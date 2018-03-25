@@ -22,10 +22,10 @@ const siteConfig = {
   baseUrl: '/' /* base url for your project */,
   projectName: 'lessor',
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
-    {page: 'help', label: 'Help'},
+    {doc: 'about', label: 'About'},
+    {doc: 'index', label: 'Docs'},
     {blog: true, label: 'Blog'},
+    {page: 'help', label: 'Help'},
   ],
   users,
   /* path to images for header/footer */
