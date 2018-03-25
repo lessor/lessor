@@ -30,6 +30,7 @@ all: build
 deps:
 	go get -u github.com/golang/dep/cmd/dep
 	dep ensure -vendor-only
+	cd ./website && yarn
 
 .PHONY: build
 build: lessor
@@ -53,3 +54,7 @@ lessor: .pre-build .pre-lessor
 
 lessor-linux: .pre-build .pre-lessor
 	GOOS=linux go build -i -o build/lessor-linux-amd64 -ldflags ${KIT_VERSION} ./cmd/lessor
+
+.PHONY: website
+website:
+	cd ./website && yarn start
