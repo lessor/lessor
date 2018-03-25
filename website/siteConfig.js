@@ -17,7 +17,7 @@ const users = [
 
 const siteConfig = {
   title: 'Lessor' /* title for your website */,
-  tagline: 'Deploy and manage single-tenant SaaS apps',
+  tagline: 'Deploy and manage single-tenant apps on Kubernetes',
   url: 'https://lessor.io' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   projectName: 'lessor',

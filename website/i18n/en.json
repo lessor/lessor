@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Deploy and manage single-tenant SaaS apps",
+    "tagline": "Deploy and manage single-tenant apps on Kubernetes",
     "about": "What is Lessor?",
     "What is Lessor?": "What is Lessor?",
     "index": "Lessor Documentation",
