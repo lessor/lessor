@@ -103,16 +103,16 @@ const Features = props => (
   <Block layout="fourColumn">
     {[
       {
-        content: 'This is the content of my feature',
+        content: 'Application-based tenancy is complicated and error prone.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
-        title: 'Feature One',
+        title: 'Write simple, secure apps',
       },
       {
-        content: 'The content of my second feature',
+        content: 'Large monoliths have a hard time squeezing the most out of hardware.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
-        title: 'Feature Two',
+        title: 'Take advantage of your resources more effectively',
       },
     ]}
   </Block>
@@ -122,8 +122,8 @@ const FeatureCallout = props => (
   <div
     className="productShowcaseSection paddingBottom"
     style={{textAlign: 'center'}}>
-    <h2>Feature Callout</h2>
-    <MarkdownBlock>These are features of this project</MarkdownBlock>
+    <h2>Cloud Agnostic</h2>
+    <MarkdownBlock>Lessor has no opinion on how you use Kubernetes.</MarkdownBlock>
   </div>
 );
 
