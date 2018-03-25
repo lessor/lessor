@@ -1,5 +1,5 @@
 ---
-title: Blog Title
+title: Second Blog Post
 author: Blog Author
 authorURL: http://twitter.com/
 authorFBID: 100002976521003
