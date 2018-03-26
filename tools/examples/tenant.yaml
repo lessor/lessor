@@ -1,0 +1,38 @@
+apiVersion: lessor.io/v1
+kind: Tenant
+metadata:
+  name: acme-labs
+  labels:
+    name: acme-labs
+spec:
+  charts:
+  - name: db
+    repo:
+      git:
+        remote: git@github.com:kubernetes/charts.git
+        commit: 439b08791f36f175f9e12f66b69e5f8dfe47b6d7
+    chart:
+      path: charts/stable/cockroachdb
+      values:
+        ImagePullPolicy: IfNotPresent
+  - name: cache
+    repo:
+      git:
+        remote: git@github.com:lessor/charts.git
+        commit: 88f99e627f630a74f4870bf8d36c14c648553407
+    chart:
+      path: charts/examples/redis
+  - name: app
+    repo:
+      git:
+        remote: git@github.com:lessor/getting-started.git
+        commit: 01e6a55421bae754c05edf1419054d8a370984ae
+    chart:
+      path: charts/app
+  - name: queue
+    repo:
+      git:
+        remote: git@github.com:lessor/getting-started.git
+        commit: 13be20fa3717f26d7fc5ffdd13c509332bfaaef0
+    chart:
+      path: charts/queue
