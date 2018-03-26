@@ -15,13 +15,18 @@ func init() {
 func main() {
 	app := cli.NewApp()
 	app.Name = "lessor"
-	app.Usage = "The CLI for managing a deploying single-tenant apps"
+	app.Usage = "Managing and deploying single-tenant apps"
 	app.Version = version.Version().Version
 	cli.VersionPrinter = func(c *cli.Context) {
 		version.PrintFull()
 	}
 
 	app.Commands = []cli.Command{
+		cli.Command{
+			Name:        "adopt",
+			Usage:       "Adopt an existing cluster",
+			Subcommands: []cli.Command{},
+		},
 		cli.Command{
 			Name:        "create",
 			Usage:       "Create resources",

@@ -34,6 +34,9 @@ deps:
 .PHONY: build
 build: lessor
 
+install:
+	cp ./build/lessor ${GOPATH}/bin
+
 build-linux: lessor-linux
 
 test:
