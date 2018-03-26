@@ -1,14 +1,14 @@
-FROM alpine as builder
-RUN apk --update add curl
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-RUN chmod +x ./kubectl
-RUN mv ./kubectl /bin/kubectl
+FROM golang:1.10 as builder
 
-FROM alpine
+WORKDIR /go/src/github.com/lessor/lessor
+COPY . .
 
-RUN apk --update add ca-certificates
+RUN make deps
+RUN make
+RUN mv build/lessor /bin/lessor
 
-COPY ./build/lessor-linux-amd64 /bin/lessor
-COPY --from=builder /bin/kubectl /bin/kubectl
+FROM gcr.io/distroless/base
+
+COPY --from=builder /bin/lessor /bin/lessor
 
 CMD ["lessor"]
