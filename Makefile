@@ -37,6 +37,9 @@ build: lessor
 test:
 	go test -cover -race -v $(shell go list ./... | grep -v /vendor/)
 
+generate:
+	./tools/codegen/update-k8s-codegen.sh
+
 .pre-lessor:
 	$(eval APP_NAME = lessor)
 

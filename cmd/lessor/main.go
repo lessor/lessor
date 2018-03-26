@@ -47,6 +47,13 @@ func main() {
 			Usage:       "Delete resources",
 			Subcommands: []cli.Command{},
 		},
+		cli.Command{
+			Name:  "run",
+			Usage: "Run workloads",
+			Subcommands: []cli.Command{
+				runOperator(),
+			},
+		},
 	}
 
 	app.RunAndExitOnError()
