@@ -34,25 +34,11 @@ deps:
 .PHONY: build
 build: lessor
 
-install:
-	cp ./build/lessor ${GOPATH}/bin
-
-build-linux: lessor-linux
-
 test:
 	go test -cover -race -v $(shell go list ./... | grep -v /vendor/)
-
-container: build-linux .pre-lessor
-	docker build -t ${DOCKER_IMAGE} .
-
-container-push:
-	gcloud docker -- push ${DOCKER_IMAGE}
 
 .pre-lessor:
 	$(eval APP_NAME = lessor)
 
 lessor: .pre-build .pre-lessor
 	go build -i -o build/lessor -ldflags ${KIT_VERSION} ./cmd/lessor
-
-lessor-linux: .pre-build .pre-lessor
-	GOOS=linux go build -i -o build/lessor-linux-amd64 -ldflags ${KIT_VERSION} ./cmd/lessor
