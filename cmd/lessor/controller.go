@@ -31,18 +31,19 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-func runOperator() cli.Command {
+func runController() cli.Command {
 	var (
-		flKubeConfig   string
-		flMaster       string
-		flLocal        bool
-		flWorkers      string
-		flResyncPeriod string
-		flDebug        bool
+		flKubeConfig      string
+		flMaster          string
+		flLocal           bool
+		flWorkers         string
+		flResyncPeriod    string
+		flBroadcastEvents bool
+		flDebug           bool
 	)
 	return cli.Command{
-		Name:  "operator",
-		Usage: "Run the Lessor Operator",
+		Name:  "controller",
+		Usage: "Run the Lessor Kubernetes Controller",
 		Flags: []cli.Flag{
 			cli.StringFlag{
 				Name:        "kubeconfig",
@@ -77,6 +78,12 @@ func runOperator() cli.Command {
 				EnvVar:      "RESYNC_PERIOD",
 				Destination: &flResyncPeriod,
 				Usage:       "How often to resync informers (in seconds)",
+			},
+			cli.BoolFlag{
+				Name:        "broadcast-events",
+				EnvVar:      "BROADCAST_EVENTS",
+				Destination: &flBroadcastEvents,
+				Usage:       "Whether or not to log event from the Kubernetes event broadcaster",
 			},
 			cli.BoolFlag{
 				Name:        "debug",
@@ -144,6 +151,7 @@ func runOperator() cli.Command {
 				lessorClient,
 				kubeInformerFactory,
 				lessorInformerFactory,
+				flBroadcastEvents,
 			)
 
 			stopCh := signals.SetupSignalHandler()

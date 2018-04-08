@@ -6,11 +6,13 @@ import (
 
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
+	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/wait"
 	kubeinformers "k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
+	typedcorev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	appslistersv1beta2 "k8s.io/client-go/listers/apps/v1beta2"
 	corelisters "k8s.io/client-go/listers/core/v1"
 	policylisters "k8s.io/client-go/listers/policy/v1beta1"
@@ -73,10 +75,33 @@ func NewController(
 	lessorClient clientset.Interface,
 	kubeInformerFactory kubeinformers.SharedInformerFactory,
 	lessorInformerFactory informers.SharedInformerFactory,
+	broadcastEvents bool,
 ) *Controller {
 	// Add cloud-operator types to the default Kubernetes Scheme so Events can be
 	// logged for cloud-operator types
 	lessorScheme.AddToScheme(scheme.Scheme)
+
+	// Create event broadcaster
+	eventBroadcaster := record.NewBroadcaster()
+	eventBroadcaster.StartLogging(func(format string, args ...interface{}) {
+		if broadcastEvents {
+			level.Info(logger).Log(
+				"from", "event broadcaster",
+				"msg", fmt.Sprintf(format, args...),
+			)
+		}
+	})
+	eventBroadcaster.StartRecordingToSink(
+		&typedcorev1.EventSinkImpl{
+			Interface: kubeClient.CoreV1().Events(""),
+		},
+	)
+	recorder := eventBroadcaster.NewRecorder(
+		scheme.Scheme,
+		corev1.EventSource{
+			Component: ControllerAgentName,
+		},
+	)
 
 	// Get references to shared index informers for the Deployment and Tenant types.
 	namespaceInformer := kubeInformerFactory.Core().V1().Namespaces()
@@ -107,6 +132,7 @@ func NewController(
 		tenantsLister:              tenantInformer.Lister(),
 		tenantsSynced:              tenantInformer.Informer().HasSynced,
 		tenantWorkqueue:            workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "Tenants"),
+		recorder:                   recorder,
 	}
 
 	// Set up an event handler for when tenant resources change

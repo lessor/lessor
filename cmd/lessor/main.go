@@ -62,7 +62,7 @@ func main() {
 			Name:  "run",
 			Usage: "Run server workloads",
 			Subcommands: []cli.Command{
-				runOperator(),
+				runController(),
 			},
 		},
 	}
