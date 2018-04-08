@@ -51,3 +51,49 @@ docker pull gcr.io/lessor-io/lessor:master-81ea9bf9c8672a3c07be338dd6e2e8fd10d6c
 ```
 
 Development branches (and their containers) are usually deleted as soon as possible, but the master containers should stay around for at least a few releases.
+
+## Development
+
+### Cloning The Repo
+
+Check out the repository to the appropriate location in your `$GOPATH`:
+
+```
+git clone git@github.com:lessor/lessor.git $GOPATH/src/github.com/lessor/lessor
+```
+
+### Installing Dependencies
+
+Lessor uses [Dep](https://github.com/golang/dep) to manage Go dependencies:
+
+```
+go get -u github.com/golang/dep/cmd/dep
+dep ensure -vendor-only
+```
+
+### Running Tests
+
+Use `go test` to run tests:
+
+```
+go test -cover -race -v ./...
+```
+
+### Builing The Code
+
+Use `go build` to build the code:
+
+```
+go build ./cmd/lessor
+```
+
+### Generating Clientset
+
+To generate the [clientset](https://github.com/kubernetes/community/blob/master/contributors/devel/generating-clientset.md) for the Lessor API types, run the following:
+
+```
+./vendor/k8s.io/code-generator/generate-groups.sh all \
+  github.com/lessor/lessor/pkg/client github.com/lessor/lessor/pkg/apis \
+  lessor.io:v1 \
+  --go-header-file /dev/null
+```
