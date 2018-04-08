@@ -13,7 +13,10 @@ test:
 	go test -cover -race -v ./...
 
 generate:
-	./tools/codegen/update-k8s-codegen.sh
+	./vendor/k8s.io/code-generator/generate-groups.sh all \
+		github.com/lessor/lessor/pkg/client github.com/lessor/lessor/pkg/apis \
+		lessor.io:v1 \
+		--go-header-file /dev/null
 
 lessor: .pre-build
 	go build -i -o build/lessor ./cmd/lessor

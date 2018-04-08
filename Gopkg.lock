@@ -187,8 +187,7 @@
   name = "github.com/kolide/kit"
   packages = [
     "env",
-    "logutil",
-    "version"
+    "logutil"
   ]
   revision = "2905b8bccb710fd75f6608a46345d764cf58a047"
 
@@ -606,6 +605,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7487eaf16c2bca8223273e0256958b4a6eef7017fd076690a2e3ffef20c2ff1b"
+  inputs-digest = "17180658de0e304fd6bef257d23ed1d1662b82d9c48c50c5a21f42f444ea160c"
   solver-name = "gps-cdcl"
   solver-version = 1
