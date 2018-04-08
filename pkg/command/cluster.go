@@ -1,4 +1,4 @@
-package main
+package command
 
 import (
 	"github.com/go-kit/kit/log/level"
@@ -6,7 +6,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-func adoptCluster() cli.Command {
+func AdoptCluster() cli.Command {
 	var (
 		flDebug bool
 	)

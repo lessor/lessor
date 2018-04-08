@@ -1,7 +1,6 @@
-package main
+package command
 
 import (
-	"math/rand"
 	"path/filepath"
 	"strconv"
 	"time"
@@ -24,14 +23,10 @@ import (
 )
 
 const (
-	resyncPeriod = 5 * time.Minute
+	resyncPeriod = 60 * time.Minute
 )
 
-func init() {
-	rand.Seed(time.Now().UnixNano())
-}
-
-func runController() cli.Command {
+func RunController() cli.Command {
 	var (
 		flKubeConfig      string
 		flMaster          string
