@@ -1,10 +1,6 @@
 required = ["k8s.io/code-generator/cmd/client-gen"]
 
 [[constraint]]
-  name = "github.com/kolide/kit"
-  branch = "master"
-
-[[constraint]]
   name = "k8s.io/apimachinery"
   branch = "release-1.8"
 
@@ -16,7 +12,7 @@ required = ["k8s.io/code-generator/cmd/client-gen"]
   name = "k8s.io/code-generator"
   branch = "release-1.8"
 
-# goland/dep does not follow k8s.io/code-generator's Godeps.json and gengo's master
+# golang/dep does not follow k8s.io/code-generator's Godeps.json and gengo's master
 # version does not work with release-1.8 k8s.io/code-generator. So we have to
 # override it.
 [[override]]
