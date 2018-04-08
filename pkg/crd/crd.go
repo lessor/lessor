@@ -11,6 +11,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// CreateOrUpdateCRDs will attemp to create or update all Kubernetes
+// Custom Resource Definitions that are used in Lessor
 func CreateOrUpdateCRDs(clientset apiextcs.Interface) error {
 	crds := []*apiextv1beta1.CustomResourceDefinition{
 		&apiextv1beta1.CustomResourceDefinition{

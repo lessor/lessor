@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	// Event source component name when using the Kubernetes Event Recorder
+	// ControllerAgentName is the event source component name when using the
+	// Kubernetes Event Recorder
 	ControllerAgentName = "lessor"
 
 	// SuccessSynced is used as part of the Event 'reason' when a tenant is synced

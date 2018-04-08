@@ -19,6 +19,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/sample-controller/pkg/signals"
 
+	// this is required to authenticate to GKE clusters
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
@@ -26,6 +27,7 @@ const (
 	resyncPeriod = 60 * time.Minute
 )
 
+// RunController is the implementation of the lessor run controlleer command
 func RunController() cli.Command {
 	var (
 		flKubeConfig      string

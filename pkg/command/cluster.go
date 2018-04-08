@@ -6,6 +6,7 @@ import (
 	"github.com/urfave/cli"
 )
 
+// AdoptCluster is the implementation of the lessor adopt cluster command
 func AdoptCluster() cli.Command {
 	var (
 		flDebug bool
@@ -29,6 +30,7 @@ func AdoptCluster() cli.Command {
 	}
 }
 
+// EjectCluster is the implementation of the lessor eject cluster command
 func EjectCluster() cli.Command {
 	var (
 		flDebug bool
