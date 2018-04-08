@@ -15,3 +15,29 @@ When faced with these two options, most companies choose to build the multi-tena
 
 Lessor aims to make it easier to choose to deploy and proxy to many instances of a single-tenant application by providing tools, services, and libraries that are purpose-built for this kind of deployment strategy.
 
+## Downloads
+
+Lessor containers are published on [Google Container Registry](https://cloud.google.com/container-registry/). These containers are not public though, so you may need to run the following to configure local access via the `docker` CLI tool:
+
+```
+gcloud config configurations activate <configuration>
+gcloud docker --authorize-only
+```
+
+### Latest Build
+
+The `latest` tag is continuously built from the `master` branch and published to [Google Container Builder](https://cloud.google.com/container-builder/):
+
+```
+docker pull gcr.io/lessor-io/lessor:latest
+```
+
+### Development Builds
+
+Each commit to each branch of the Lessor repository (`git@github.com:lessor/lessor.git`) also builds a container with the following naming scheme:`gcr.io/lessor-io/lessor:branch-commitsha`. For example:
+
+```
+docker pull gcr.io/lessor-io/lessor:master-82d66d991196a6c5fd756296a36da6ab8263010b
+```
+
+Development branches (and their containers) are usually deleted as soon as possible, but the master containers should stay around for at least a few releases.
