@@ -71,7 +71,6 @@ curl -L https://lessor.io/install.yaml | kubectl apply -f -
 First ensure the following Kubernetes services are deployed:
 
 - lessor-ingress
-- lessor-registrar
 
 ```
 kubectl get services -n lessor-system
@@ -79,9 +78,8 @@ kubectl get services -n lessor-system
 
 Next, ensure the corresponding Kubernetes pods are deployed and all containers are up and running:
 
+- lessor-ingress
 - lessor-controller
-- lessor-shuffler
-- lessor-registrar
 
 ```
 kubectl get pods -n lessor-system

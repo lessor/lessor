@@ -1,10 +1,7 @@
 package controller
 
 import (
-	"bytes"
 	"fmt"
-	"io"
-	"os/exec"
 
 	"github.com/lessor/lessor/pkg/apis/lessor.io/v1"
 	"github.com/pkg/errors"
@@ -61,20 +58,5 @@ func (c *Controller) validateTenant(tenant *v1.Tenant) error {
 	case "shared", "edge", "kube-system", "kube-public":
 		return fmt.Errorf("%s is a reserved tenant name", tenant.Name)
 	}
-	return nil
-}
-
-func kubectlApply(input io.Reader) error {
-	cmd := exec.Command("kubectl", "apply", "-f", "-")
-	cmd.Stdin = input
-
-	var (
-		stderr bytes.Buffer
-	)
-	cmd.Stderr = &stderr
-	if err := cmd.Run(); err != nil {
-		return errors.Wrapf(err, "exec kubectl apply: %s", stderr.String())
-	}
-
 	return nil
 }
