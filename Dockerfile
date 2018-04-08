@@ -3,9 +3,9 @@ FROM golang:1.10.1 as builder
 WORKDIR /go/src/github.com/lessor/lessor
 COPY . .
 
-RUN make deps
-RUN make
-RUN mv build/lessor /bin/lessor
+RUN go get -u github.com/golang/dep/cmd/dep
+RUN dep ensure -vendor-only
+RUN go build -o /bin/lessor ./cmd/lessor
 
 FROM gcr.io/distroless/base
 
