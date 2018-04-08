@@ -1,4 +1,4 @@
-# Lessor
+# Lessor [![CircleCI](https://circleci.com/gh/lessor/lessor/tree/master.svg?style=svg&circle-token=6df998c0f2085edbc4bfeaf38e5114f990204c36)](https://circleci.com/gh/lessor/lessor/tree/master)
 
 Lessor is a set of tools for deploying, managing, and securing many instances of single-tenant applications on [Kubernetes](https://kubernetes.io/). Lessor allows you to proxy to and independently scale each tenant with network and data isolation by default. This approach makes application development simpler and more secure.
 
@@ -37,7 +37,7 @@ docker pull gcr.io/lessor-io/lessor:latest
 Each commit to each branch of the Lessor repository (`git@github.com:lessor/lessor.git`) also builds a container with the following naming scheme:`gcr.io/lessor-io/lessor:branch-commitsha`. For example:
 
 ```
-docker pull gcr.io/lessor-io/lessor:master-82d66d991196a6c5fd756296a36da6ab8263010b
+docker pull gcr.io/lessor-io/lessor:master-81ea9bf9c8672a3c07be338dd6e2e8fd10d6cfba
 ```
 
 Development branches (and their containers) are usually deleted as soon as possible, but the master containers should stay around for at least a few releases.
