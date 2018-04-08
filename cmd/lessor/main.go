@@ -4,7 +4,6 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/kolide/kit/version"
 	"github.com/urfave/cli"
 )
 
@@ -16,10 +15,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "lessor"
 	app.Usage = "Deploy, manage, and secure single-tenant applications on Kubernetes"
-	app.Version = version.Version().Version
-	cli.VersionPrinter = func(c *cli.Context) {
-		version.PrintFull()
-	}
+	app.Version = "0.0.0"
 
 	app.Commands = []cli.Command{
 		cli.Command{
