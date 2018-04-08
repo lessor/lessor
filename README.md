@@ -27,22 +27,18 @@ go get -u github.com/lessor/lessor
 
 ### Containers
 
-Lessor containers are published on [Google Container Registry](https://cloud.google.com/container-registry/). These containers are not public though, so you may need to run the following to configure local access via the `docker` CLI tool:
+Lessor containers are published on [Google Container Registry](https://cloud.google.com/container-registry/). The Lessor containers are not public so you may need to run the following to configure local access:
 
 ```
 gcloud config configurations activate <configuration>
 gcloud docker --authorize-only
 ```
 
-#### Latest Build
-
-The `latest` tag is continuously built from the `master` branch and published to [Google Container Builder](https://cloud.google.com/container-builder/):
+The `latest` tag is continuously built from the `master` via [Google Container Builder](https://cloud.google.com/container-builder/) and published on [Google Container Registry](https://cloud.google.com/container-registry/):
 
 ```
 docker pull gcr.io/lessor-io/lessor:latest
 ```
-
-#### Development Builds
 
 Each commit to each branch of the Lessor repository (`git@github.com:lessor/lessor.git`) also builds a container with the following naming scheme:`gcr.io/lessor-io/lessor:branch-commitsha`. For example:
 
