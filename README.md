@@ -1,6 +1,6 @@
 # Lessor
 
-Lessor is a set of tools for deploying and managing many instances of single-tenant applications on [Kubernetes](https://kubernetes.io/) with a focus on security and scalability. Lessor allows you to proxy to and independently scale each tenant with network and data isolation by default. This approach makes application development simpler and more secure.
+Lessor is a set of tools for deploying, managing, and securing many instances of single-tenant applications on [Kubernetes](https://kubernetes.io/). Lessor allows you to proxy to and independently scale each tenant with network and data isolation by default. This approach makes application development simpler and more secure.
 
 Lessor is a permissively licensed open source project that was created by [Kolide](https://github.com/kolide) to deploy, manage, observe, and secure the Kolide Cloud product.
 

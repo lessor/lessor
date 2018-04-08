@@ -15,7 +15,7 @@ func init() {
 func main() {
 	app := cli.NewApp()
 	app.Name = "lessor"
-	app.Usage = "Running single-tenant apps in Kubernetes"
+	app.Usage = "Deploy, manage, and secure single-tenant applications on Kubernetes"
 	app.Version = version.Version().Version
 	cli.VersionPrinter = func(c *cli.Context) {
 		version.PrintFull()
@@ -27,35 +27,6 @@ func main() {
 			Usage: "Adopt an existing cluster",
 			Subcommands: []cli.Command{
 				adoptCluster(),
-			},
-		},
-		cli.Command{
-			Name:  "create",
-			Usage: "Create resources",
-			Subcommands: []cli.Command{
-				createCluster(),
-				putSecret(),
-			},
-		},
-		cli.Command{
-			Name:  "get",
-			Usage: "Get and list resources",
-			Subcommands: []cli.Command{
-				getSecret(),
-			},
-		},
-		cli.Command{
-			Name:  "put",
-			Usage: "Create or update resources",
-			Subcommands: []cli.Command{
-				putSecret(),
-			},
-		},
-		cli.Command{
-			Name:  "delete",
-			Usage: "Delete resources",
-			Subcommands: []cli.Command{
-				deleteSecret(),
 			},
 		},
 		cli.Command{
