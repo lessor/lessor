@@ -9,7 +9,7 @@ jobs:
       - run: go get -u github.com/golang/dep/cmd/dep
       - run: dep ensure -vendor-only
       - run: go test -race -cover -v ./...
-      - run: go build ./cmd/lessor
+      - run: go build
 workflows:
   version: 2
   build:

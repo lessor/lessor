@@ -22,7 +22,7 @@ Lessor aims to make it easier to choose to deploy and proxy to many instances of
 To download the latest `lessor` binary, you can use `go get`:
 
 ```
-go get -u github.com/lessor/lessor/cmd/lessor
+go get -u github.com/lessor/lessor
 ```
 
 ### Containers
@@ -84,7 +84,7 @@ go test -cover -race -v ./...
 Use `go build` to build the code:
 
 ```
-go build ./cmd/lessor
+go build
 ```
 
 ### Generating Clientset

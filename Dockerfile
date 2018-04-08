@@ -5,7 +5,7 @@ COPY . .
 
 RUN go get -u github.com/golang/dep/cmd/dep
 RUN dep ensure -vendor-only
-RUN go build -o /bin/lessor ./cmd/lessor
+RUN go build -o /bin/lessor
 
 FROM gcr.io/distroless/base
 

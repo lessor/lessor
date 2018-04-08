@@ -4,6 +4,7 @@ import (
 	"math/rand"
 	"time"
 
+	"github.com/lessor/lessor/pkg/command"
 	"github.com/urfave/cli"
 )
 
@@ -22,14 +23,14 @@ func main() {
 			Name:  "adopt",
 			Usage: "Adopt an existing cluster",
 			Subcommands: []cli.Command{
-				adoptCluster(),
+				command.AdoptCluster(),
 			},
 		},
 		cli.Command{
 			Name:  "run",
 			Usage: "Run server workloads",
 			Subcommands: []cli.Command{
-				runController(),
+				command.RunController(),
 			},
 		},
 	}
