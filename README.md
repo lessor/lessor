@@ -17,6 +17,16 @@ Lessor aims to make it easier to choose to deploy and proxy to many instances of
 
 ## Downloads
 
+### Binaries
+
+To download the latest `lessor` binary, you can use `go get`:
+
+```
+go get -u github.com/lessor/lessor/cmd/lessor
+```
+
+### Containers
+
 Lessor containers are published on [Google Container Registry](https://cloud.google.com/container-registry/). These containers are not public though, so you may need to run the following to configure local access via the `docker` CLI tool:
 
 ```
@@ -24,7 +34,7 @@ gcloud config configurations activate <configuration>
 gcloud docker --authorize-only
 ```
 
-### Latest Build
+#### Latest Build
 
 The `latest` tag is continuously built from the `master` branch and published to [Google Container Builder](https://cloud.google.com/container-builder/):
 
@@ -32,7 +42,7 @@ The `latest` tag is continuously built from the `master` branch and published to
 docker pull gcr.io/lessor-io/lessor:latest
 ```
 
-### Development Builds
+#### Development Builds
 
 Each commit to each branch of the Lessor repository (`git@github.com:lessor/lessor.git`) also builds a container with the following naming scheme:`gcr.io/lessor-io/lessor:branch-commitsha`. For example:
 
