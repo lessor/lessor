@@ -6,6 +6,11 @@ import (
 
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
+	clientset "github.com/lessor/lessor/pkg/client/clientset/versioned"
+	lessorScheme "github.com/lessor/lessor/pkg/client/clientset/versioned/scheme"
+	informers "github.com/lessor/lessor/pkg/client/informers/externalversions"
+	listers "github.com/lessor/lessor/pkg/client/listers/lessor/v1"
+
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/wait"
@@ -19,11 +24,6 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/record"
 	"k8s.io/client-go/util/workqueue"
-
-	clientset "github.com/lessor/lessor/pkg/client/clientset/versioned"
-	lessorScheme "github.com/lessor/lessor/pkg/client/clientset/versioned/scheme"
-	informers "github.com/lessor/lessor/pkg/client/informers/externalversions"
-	listers "github.com/lessor/lessor/pkg/client/listers/lessor/v1"
 )
 
 // Controller is the controller implementation for managing Tenant resources

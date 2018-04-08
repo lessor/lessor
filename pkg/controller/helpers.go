@@ -3,8 +3,9 @@ package controller
 import (
 	"fmt"
 
-	"github.com/lessor/lessor/pkg/apis/lessor.io/v1"
+	lessorv1 "github.com/lessor/lessor/pkg/apis/lessor.io/v1"
 	"github.com/pkg/errors"
+
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/client-go/tools/cache"
 )
@@ -29,7 +30,7 @@ const (
 	MessageResourceSynced = "Tenant synced successfully"
 )
 
-func (c *Controller) tenantForCacheKey(key string) (*v1.Tenant, bool, error) {
+func (c *Controller) tenantForCacheKey(key string) (*lessorv1.Tenant, bool, error) {
 	// Convert the namespace/name string into a distinct namespace and name
 	namespace, name, err := cache.SplitMetaNamespaceKey(key)
 	if err != nil {
@@ -51,7 +52,7 @@ func (c *Controller) tenantForCacheKey(key string) (*v1.Tenant, bool, error) {
 	return tenant, true, nil
 }
 
-func (c *Controller) validateTenant(tenant *v1.Tenant) error {
+func (c *Controller) validateTenant(tenant *lessorv1.Tenant) error {
 	switch tenant.Name {
 	case "":
 		return errors.New("tenant name cannot be empty")

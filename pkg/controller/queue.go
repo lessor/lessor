@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-kit/kit/log/level"
 	"github.com/pkg/errors"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/cache"
 )

@@ -1,11 +1,11 @@
 package controller
 
 import (
+	lessorv1 "github.com/lessor/lessor/pkg/apis/lessor.io/v1"
+
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
-
-	lessorv1 "github.com/lessor/lessor/pkg/apis/lessor.io/v1"
 )
 
 // generator is a type which can be used to create parameterized deployable

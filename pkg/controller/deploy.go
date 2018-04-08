@@ -3,6 +3,7 @@ package controller
 import (
 	"github.com/imdario/mergo"
 	"github.com/pkg/errors"
+
 	appsv1beta2 "k8s.io/api/apps/v1beta2"
 	corev1 "k8s.io/api/core/v1"
 	policyv1beta1 "k8s.io/api/policy/v1beta1"

@@ -108,3 +108,26 @@ docker pull gcr.io/lessor-io/lessor:master-81ea9bf9c8672a3c07be338dd6e2e8fd10d6c
 ```
 
 Development branches (and their containers) are usually deleted as soon as possible, but the master containers should stay around for at least a few releases.
+
+## Import Organization
+
+When importing Go dependences in a file, they should be formatted in the following order, each section separated by a newline:
+
+1. Standard Library Imports
+2. Non-standard Library Imports (anything on GitHub, etc.)
+3. Upstream Kubernetes Imports (`k8s.io/...`)
+
+Consider the following example:
+
+```go
+import (
+	"fmt"
+	"net/http"
+
+	"github.com/go-kit/kit/log/level"
+	"github.com/pkg/errors"
+
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/tools/cache"
+)
+```
