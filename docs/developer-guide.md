@@ -98,12 +98,18 @@ lessor run controller --local --debug
 
 ### Downloading and Running Containers
 
+#### Authentication
+
 Lessor containers are published on [Google Container Registry](https://cloud.google.com/container-registry/). The Lessor containers are not public so you may need to run the following to configure local access:
 
 ```
 gcloud config configurations activate <configuration>
 gcloud docker --authorize-only
 ```
+
+If you'd like to configure your Kubernetes cluster to use these containers, see the Heptio documentation on [how to pull from private registries with Kubernetes](http://docs.heptio.com/content/private-registries/pr-gcr.html).
+
+#### Tags
 
 The `latest` tag is continuously built from the `master` via [Google Container Builder](https://cloud.google.com/container-builder/) and published on [Google Container Registry](https://cloud.google.com/container-registry/):
 
@@ -119,7 +125,9 @@ docker pull gcr.io/lessor-io/lessor:master-81ea9bf9c8672a3c07be338dd6e2e8fd10d6c
 
 Development branches (and their containers) are usually deleted as soon as possible, but the master containers should stay around for at least a few releases.
 
-You can also use the `docker` CLI to run the container:
+#### Running The Container
+
+You can use the `docker` CLI to run the container:
 
 ```
 docker run -it gcr.io/lessor-io/lessor lessor --help
