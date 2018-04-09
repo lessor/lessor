@@ -100,11 +100,10 @@ lessor run controller --local --debug
 
 #### Authentication
 
-Lessor containers are published on [Google Container Registry](https://cloud.google.com/container-registry/). The Lessor containers are not public so you may need to run the following to configure local access:
+Lessor containers are published on [Google Container Registry](https://cloud.google.com/container-registry/). The Lessor containers are not public so you will need to install the [`gcloud`](https://cloud.google.com/sdk/downloads) command-line tool and run the following to configure local access:
 
 ```
-gcloud config configurations activate <configuration>
-gcloud docker --authorize-only
+gcloud auth configure-docker
 ```
 
 If you'd like to configure your Kubernetes cluster to use these containers, see the Heptio documentation on [how to pull from private registries with Kubernetes](http://docs.heptio.com/content/private-registries/pr-gcr.html).
