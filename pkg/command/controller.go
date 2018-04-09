@@ -112,7 +112,8 @@ func RunController() cli.Command {
 			if err != nil {
 				return errors.Wrap(err, "error build api extensions client")
 			}
-			if err := crd.CreateOrUpdateCRDs(apiextcsClient); err != nil {
+			err = crd.CreateOrUpdateCRDs(apiextcsClient)
+			if err != nil {
 				return errors.Wrap(err, "error creating CRD")
 			}
 
