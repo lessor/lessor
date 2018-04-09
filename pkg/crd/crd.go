@@ -11,7 +11,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// CreateOrUpdateCRDs will attemp to create or update all Kubernetes
+// CreateOrUpdateCRDs will attempt to create or update all Kubernetes
 // Custom Resource Definitions that are used in Lessor
 func CreateOrUpdateCRDs(clientset apiextcs.Interface) error {
 	crds := []*apiextv1beta1.CustomResourceDefinition{
@@ -35,16 +35,16 @@ func CreateOrUpdateCRDs(clientset apiextcs.Interface) error {
 		existing, err := clientset.ApiextensionsV1beta1().CustomResourceDefinitions().Get(crd.ObjectMeta.Name, metav1.GetOptions{})
 		switch {
 		case apierrors.IsNotFound(err):
-			if _, err := clientset.ApiextensionsV1beta1().CustomResourceDefinitions().Create(crd); err != nil {
-				return errors.Wrap(err, "error creating CRD")
+			if _, createErr := clientset.ApiextensionsV1beta1().CustomResourceDefinitions().Create(crd); err != nil {
+				return errors.Wrap(createErr, "error creating CRD")
 			}
 		case err != nil:
 			return errors.Wrap(err, "error getting crd")
 		default:
 			merged := existing.DeepCopy()
 			mergo.Merge(&merged, crd)
-			if _, err := clientset.ApiextensionsV1beta1().CustomResourceDefinitions().Update(merged); err != nil {
-				return errors.Wrap(err, "errors updating CRD")
+			if _, updateErr := clientset.ApiextensionsV1beta1().CustomResourceDefinitions().Update(merged); err != nil {
+				return errors.Wrap(updateErr, "errors updating CRD")
 			}
 		}
 	}
