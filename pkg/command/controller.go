@@ -2,7 +2,6 @@ package command
 
 import (
 	"path/filepath"
-	"strconv"
 	"time"
 
 	"github.com/kolide/kit/env"
@@ -34,8 +33,8 @@ func RunController() cli.Command {
 		flKubeConfig      string
 		flMaster          string
 		flLocal           bool
-		flWorkers         string
-		flResyncPeriod    string
+		flWorkers         int
+		flResyncPeriod    int
 		flBroadcastEvents bool
 		flDebug           bool
 	)
@@ -63,16 +62,16 @@ func RunController() cli.Command {
 				Destination: &flLocal,
 				Usage:       "Use the local kubeconfig at ~/.kube/config",
 			},
-			cli.StringFlag{
+			cli.IntFlag{
 				Name:        "workers",
-				Value:       "2",
+				Value:       2,
 				EnvVar:      "WORKERS",
 				Destination: &flWorkers,
 				Usage:       "The number of controller workers to launch",
 			},
-			cli.StringFlag{
+			cli.IntFlag{
 				Name:        "resync-period",
-				Value:       "300",
+				Value:       300,
 				EnvVar:      "RESYNC_PERIOD",
 				Destination: &flResyncPeriod,
 				Usage:       "How often to resync informers (in seconds)",
@@ -97,12 +96,6 @@ func RunController() cli.Command {
 			kubeconfig := flKubeConfig
 			if flLocal && kubeconfig == "" {
 				kubeconfig = filepath.Join(env.String("HOME", "~/"), ".kube/config")
-			}
-
-			// validate the --workers flag
-			workers, err := strconv.Atoi(flWorkers)
-			if err != nil {
-				return errors.Wrap(err, "error parsing --workers as an int")
 			}
 
 			// get a k8s.io/client-go/rest.Config with the provided kubeconfig flags
@@ -134,11 +127,7 @@ func RunController() cli.Command {
 				return errors.Wrap(err, "error building clientset")
 			}
 
-			r, err := strconv.Atoi(flResyncPeriod)
-			if err != nil {
-				return errors.Wrap(err, "casting --resync-period as an int")
-			}
-			resyncPeriod := time.Duration(r) * time.Second
+			resyncPeriod := time.Duration(flResyncPeriod) * time.Second
 
 			kubeInformerFactory := kubeinformers.NewSharedInformerFactory(kubeClient, resyncPeriod)
 			lessorInformerFactory := informers.NewSharedInformerFactory(lessorClient, resyncPeriod)
@@ -157,7 +146,7 @@ func RunController() cli.Command {
 			go kubeInformerFactory.Start(stopCh)
 			go lessorInformerFactory.Start(stopCh)
 
-			if err = c.Run(workers, stopCh); err != nil {
+			if err = c.Run(flWorkers, stopCh); err != nil {
 				return errors.Wrap(err, "error running controller")
 			}
 
