@@ -6,11 +6,19 @@ jobs:
     working_directory: /go/src/github.com/lessor/lessor
     steps: &steps
       - checkout
-      - run: go get -u golang.org/x/lint/golint
+      - run: go get -u github.com/alecthomas/gometalinter
+      - run: gometalinter --install
       - run: go get -u github.com/golang/dep/cmd/dep
       - run: dep ensure -vendor-only
-      - run: go vet $(go list ./pkg/... | egrep -v "pkg/client|pkg/apis")
-      - run: golint -set_exit_status $(go list ./pkg/... | egrep -v "pkg/client|pkg/apis")
+      - run: >
+          gometalinter --disable-all \
+            --enable=vet \
+            --enable=vetshadow \
+            --enable=golint \
+            --enable=misspell \
+            --skip=client \
+            --skip=apis \
+            ./pkg/...
       - run: go test -race -cover -v ./...
       - run: go build
 workflows:
