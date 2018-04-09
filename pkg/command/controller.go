@@ -23,10 +23,6 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
-const (
-	resyncPeriod = 60 * time.Minute
-)
-
 // RunController is the implementation of the lessor run controlleer command
 func RunController() cli.Command {
 	var (
@@ -71,7 +67,7 @@ func RunController() cli.Command {
 			},
 			cli.IntFlag{
 				Name:        "resync-period",
-				Value:       300,
+				Value:       60 * 60, // 1 hour
 				EnvVar:      "RESYNC_PERIOD",
 				Destination: &flResyncPeriod,
 				Usage:       "How often to resync informers (in seconds)",
