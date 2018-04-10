@@ -22,7 +22,7 @@ In addition, here are some other documents that may be helpful:
 >
 > a person or company that leases a good or service to an entity according to an agreement
 
-Lessor is an open platform for deploying, managing, and securing many instances of single-tenant applications on [Kubernetes](https://kubernetes.io/). Lessor allows you to proxy to and independently scale each tenant with network and data isolation by default. This approach makes application development simpler and more secure.
+Lessor is an open platform for deploying, managing, and securing many instances of single-tenant applications on [Kubernetes](https://kubernetes.io/). Lessor allows you to independently operator and scale each tenant with network and data isolation by default. This approach makes application development simpler and more secure.
 
 ## Motivation
 
