@@ -20,20 +20,6 @@ func main() {
 
 	app.Commands = []cli.Command{
 		cli.Command{
-			Name:  "adopt",
-			Usage: "Adopt an existing cluster",
-			Subcommands: []cli.Command{
-				command.AdoptCluster(),
-			},
-		},
-		cli.Command{
-			Name:  "eject",
-			Usage: "Remove Lessor from an existing cluster",
-			Subcommands: []cli.Command{
-				command.EjectCluster(),
-			},
-		},
-		cli.Command{
 			Name:  "run",
 			Usage: "Run server workloads",
 			Subcommands: []cli.Command{
