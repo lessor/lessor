@@ -1,6 +1,8 @@
 # Getting Started
 
-> *Note: Parts of this section are currently aspirational and may not work as described.*
+<p align="center">
+  <img src="./gophers/kubernetes_word.png" width="600">
+</p>
 
 ## Installation Steps
 
