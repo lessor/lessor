@@ -12,6 +12,7 @@ Deploy, manage, and secure single-tenant applications on [Kubernetes](https://ku
 
 In addition, here are some other documents that may be helpful:
 
+- [Documentation](./docs/README.md)
 - [Getting Started](./docs/getting-started.md)
 - [Developer Guide](./docs/developer-guide.md)
 
