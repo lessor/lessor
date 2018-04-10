@@ -3,7 +3,7 @@
 Deploy, manage, and secure single-tenant applications on [Kubernetes](https://kubernetes.io/).
 
 <p align="center">
-  <img src="./gophers/share.png" width="500">
+  <img src="./images/gophers/share.png" width="500">
 </p>
 
 ## Contents
@@ -14,5 +14,6 @@ Deploy, manage, and secure single-tenant applications on [Kubernetes](https://ku
 
 ## Getting Help
 
+- To see the answers to some frequently asked questions, see the [FAQ](./faq.md)
 - If you would like to file a bug or request a feature, please file a [GitHub Issue](https://github.com/lessor/lessor/issues/new)
 - If you have a question or would like to discuss Lessor, please send an email to the [Mailing List](https://groups.google.com/forum/#!forum/lessor)

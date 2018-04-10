@@ -1,7 +1,7 @@
 # Lessor [![CircleCI](https://circleci.com/gh/lessor/lessor/tree/master.svg?style=svg&circle-token=6df998c0f2085edbc4bfeaf38e5114f990204c36)](https://circleci.com/gh/lessor/lessor/tree/master)
 
 <p align="center">
-  <img src="./docs/gophers/boxes.png" width="400">
+  <img src="./docs/images/gophers/boxes.png" width="400">
 </p>
 
 Deploy, manage, and secure single-tenant applications on [Kubernetes](https://kubernetes.io/).
