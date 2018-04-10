@@ -38,10 +38,8 @@ Lessor uses the [Operator](https://coreos.com/blog/introducing-operators.html) p
 While most Kubernetes Operators deal with the administration of a single service, Lessor aims to automate larger application and cluster SRE objectives such as:
 
 - tenant provisioning
-- account management
 - high-velocity deployments
 - external resource acquisition
 - secret distribution
-- ingress proxy configuration
 
 Each "tenant" in your environment is represented as a Kubernetes resource. Each Tenant resource contains the metadata that describes how to configure, deploy, and connect the microservices which make up the tenant. See one of the [example tenants](./examples/tenant.yaml) for an overview of the configurable attributes of a tenant.

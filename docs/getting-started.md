@@ -24,17 +24,8 @@ curl -L https://lessor.io/k8s/adopt.yaml | kubectl apply -f -
 
 ## Verifying The Installation
 
-First ensure the following Kubernetes services are deployed:
+Ensure the Kubernetes pods for the following Deployments are deployed and all containers are up and running:
 
-- lessor-ingress
-
-```
-kubectl get services -n lessor-system
-```
-
-Next, ensure the corresponding Kubernetes pods are deployed and all containers are up and running:
-
-- lessor-ingress
 - lessor-controller
 
 ```
