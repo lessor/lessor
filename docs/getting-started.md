@@ -13,13 +13,7 @@ To install Lessor in a Kubernetes cluster, you'll need:
 With your `kubectl` context configured to use your cluster, you can use the `lessor` CLI to "adopt" a cluster:
 
 ```
-lessor adopt cluster
-```
-
-You can also create the required deployments via a hosted manifest:
-
-```
-curl -L https://lessor.io/k8s/adopt.yaml | kubectl apply -f -
+kubectl apply -f ./example/install.yaml
 ```
 
 ## Verifying The Installation
@@ -40,16 +34,16 @@ Try creating an example tenant:
 kubectl apply -f ./examples/tenant.yaml
 ```
 
+Watch the tenant start up:
+
+```
+kubectl get pods -n acme-labs
+```
+
 ## Uninstalling
 
-To delete all tenants and all Lessor deployment and services, you can run the following:
+To delete all tenants and all Lessor deployment and services, you can run a one-time job via a hosted manifest:
 
 ```
-lessor eject cluster
-```
-
-If you don't have access to the `lessor` biniary, you can run a one-time job via a hosted manifest:
-
-```
-curl -L https://lessor.io/k8s/eject.yaml | kubectl apply -f -
+kubectl delete -f ./examples/install.yaml
 ```
