@@ -1,7 +1,7 @@
 # Developer Guide
 
 <p align="center">
-  <img src="./gophers/gophers_working.png" width="400">
+  <img src="./images/gophers/gophers_working.png" width="400">
 </p>
 
 The developer guide has the following sections:

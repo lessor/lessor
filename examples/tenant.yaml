@@ -4,3 +4,36 @@ metadata:
   name: acme-labs
   labels:
     name: acme-labs
+
+spec:
+  # Namespace defaults to the name of the tenant. This is a no-op:
+  namespace: acme-labs
+
+  # Deployable resources can be generated in a number of ways. As you're
+  # growing, it can be easiest to write raw Kubernetes yaml. As your deployments
+  # become more complex and related, it can be helpful to use a templating
+  # abstraction like Helm, ksonnet, various templating engines, etc.
+  apps:
+
+    # Templates are similar to Helm packages in structure, but slightly simpler in
+    # practice. Each item has two main components:
+    # - template: a reference on how to get a template file (URL, file, secret, etc)
+    # - values: values to interpolate into the template (in addition to defaults)
+    templates:
+
+      # If template type is "golang", the template is defined using the
+      # {{ .GoTemplate }} convention: https://golang.org/pkg/text/template/
+      - name: kuard-golang
+        type: golang
+        url: https://lessor.io/latest/examples/templates/kuard-golang.yaml
+        values:
+          image: gcr.io/kuar-demo/kuard-amd64:1
+
+      # If template type is "plush", the template is defined using the
+      # <%= plush %> conventions: https://github.com/gobuffalo/plush
+      - name: kuard-plush
+        type: plush
+        url: https://lessor.io/latest/examples/templates/kuard-plush.yaml
+        values:
+          image: gcr.io/kuar-demo/kuard-amd64:1
+
