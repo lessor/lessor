@@ -9,6 +9,44 @@ spec:
   # Namespace defaults to the name of the tenant. This is a no-op:
   namespace: acme-labs
 
+  # External services can be bound to using the Open Service Broker API. The
+  # Open Service Broker API defines an HTTP(S) interface between Platforms and Service
+  # Brokers.
+  #
+  # In general, provisioning reserves a resource on a service; we call this reserved
+  # resource a Service Instance. What a Service Instance represents can vary by
+  # service. Examples include a single database on a multi-tenant server, a dedicated
+  # cluster, or an account on a web application.
+  #
+  # Lessor allows you to define the Service Instance and will automatically create the
+  # appropriate binding. The stateless applications should be aware of things like what
+  # format secrets will be in when bound, etc. For this reason, during development,
+  # consider creating the service instance first, observing the secrets that are put in
+  # the namespace, and writing your Kubernetes configurations appropriately.
+  #
+  # - Read about the Open Service Broker API: https://www.openservicebrokerapi.org/
+  # - API Spec: https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md
+  # - Azure maintains a nice broker: https://github.com/azure/open-service-broker-azure
+  serviceCatalog:
+    instances:
+      - name: mysql
+        clusterServiceClassExternalName: azure-mysql
+        clusterServicePlanExternalName: basic50
+        parameters:
+          location: eastus
+          resourceGroup: demo
+          firewallRules:
+          - startIPAddress: "0.0.0.0"
+            endIPAddress: "255.255.255.255"
+            name: "AllowAll"
+
+      - name: redis
+        clusterServiceClassExternalName: azure-rediscache
+        clusterServicePlanExternalName: basic
+        parameters:
+          location: eastus
+          resourceGroup: demo
+
   # Deployable resources can be generated in a number of ways. As you're
   # growing, it can be easiest to write raw Kubernetes yaml. As your deployments
   # become more complex and related, it can be helpful to use a templating
