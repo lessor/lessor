@@ -9,11 +9,9 @@ import (
 	clientset "github.com/lessor/lessor/pkg/client/clientset/versioned"
 	informers "github.com/lessor/lessor/pkg/client/informers/externalversions"
 	"github.com/lessor/lessor/pkg/controller"
-	"github.com/lessor/lessor/pkg/crd"
 	"github.com/pkg/errors"
 	"github.com/urfave/cli"
 
-	apiextcs "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 	kubeinformers "k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
@@ -105,16 +103,6 @@ func RunController() cli.Command {
 			kubeClient, err := kubernetes.NewForConfig(cfg)
 			if err != nil {
 				return errors.Wrap(err, "error building kubernetes clientset")
-			}
-
-			// create or update the CustomResourceDefinition
-			apiextcsClient, err := apiextcs.NewForConfig(cfg)
-			if err != nil {
-				return errors.Wrap(err, "error build api extensions client")
-			}
-			err = crd.CreateOrUpdateCRDs(apiextcsClient)
-			if err != nil {
-				return errors.Wrap(err, "error creating CRD")
 			}
 
 			// use the k8s.io/client-go/rest.Config to get a REST client which includes
