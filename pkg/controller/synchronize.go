@@ -28,13 +28,10 @@ func (c *Controller) resolveTenantState(key string) error {
 		return nil
 	}
 
-	generator := newGenerator(tenant)
-
-	n := generator.Namespace()
-	_, err = c.namespacesLister.Get(n.Name)
+	_, err = c.namespacesLister.Get(tenant.Namespace())
 	switch {
 	case apierrors.IsNotFound(err):
-		if _, err := c.kubeClient.CoreV1().Namespaces().Create(n); err != nil {
+		if _, err := c.kubeClient.CoreV1().Namespaces().Create(tenant.NamespaceResource()); err != nil {
 			return errors.Wrapf(err, "error creating namespace for tenant %s", tenant.Name)
 		}
 	case err != nil:
