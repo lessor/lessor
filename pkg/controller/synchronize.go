@@ -33,6 +33,10 @@ func (c *Controller) resolveTenantState(key string) error {
 		return errors.Wrap(err, "error applying namespace for tenant")
 	}
 
+	if err := c.rehydrateSecrets(c.templateNamespace, tenant.Name); err != nil {
+		return errors.Wrap(err, "error creating secrets for tenant")
+	}
+
 	c.recorder.Event(tenant, corev1.EventTypeNormal, SuccessSynced, MessageResourceSynced)
 
 	return nil
