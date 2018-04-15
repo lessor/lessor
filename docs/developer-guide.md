@@ -97,6 +97,10 @@ circleci build
 To run the Lessor controller locally against the Kubernetes API server that is your currently configured `kubectl` context, run the following:
 
 ```
+# create the namespace, CRD, etc
+kubectl apply -f ./examples/development.yaml
+
+# run the controller locally
 lessor run controller --local --debug
 ```
 
