@@ -5,6 +5,7 @@ import (
 	"github.com/pkg/errors"
 
 	corev1 "k8s.io/api/core/v1"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 )
 
 // resolveTenantState compares the actual state with the desired, and attempts to
@@ -29,8 +30,17 @@ func (c *Controller) resolveTenantState(key string) error {
 
 	generator := newGenerator(tenant)
 
-	if _, err := c.updateOrCreateNamespace(generator.Namespace()); err != nil {
-		return errors.Wrap(err, "error applying namespace for tenant")
+	n := generator.Namespace()
+	_, err = c.namespacesLister.Get(n.Name)
+	switch {
+	case apierrors.IsNotFound(err):
+		if _, err := c.kubeClient.CoreV1().Namespaces().Create(n); err != nil {
+			return errors.Wrapf(err, "error creating namespace for tenant %s", tenant.Name)
+		}
+	case err != nil:
+		errors.Wrapf(err, "error getting namespace for tenant %s", tenant.Name)
+	default:
+		// the namespace already exists
 	}
 
 	if err := c.rehydrateSecrets(c.templateNamespace, tenant.Name); err != nil {
