@@ -13,7 +13,6 @@ jobs:
       - run: >
           gometalinter --disable-all \
             --enable=vet \
-            --enable=vetshadow \
             --enable=golint \
             --enable=misspell \
             --skip=client \
