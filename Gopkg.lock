@@ -8,6 +8,12 @@
   version = "v0.20.0"
 
 [[projects]]
+  branch = "master"
+  name = "code.cloudfoundry.org/lager"
+  packages = ["."]
+  revision = "25ee72f227fe10c5671d8a99d05a2faf388ccfeb"
+
+[[projects]]
   name = "github.com/PuerkitoBio/purell"
   packages = ["."]
   revision = "0bcb03f4b4d0a9428594752bd2a3b9aa0a9d4bd4"
@@ -141,6 +147,18 @@
   version = "v0.1.0"
 
 [[projects]]
+  name = "github.com/gorilla/context"
+  packages = ["."]
+  revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
+  version = "v1.1"
+
+[[projects]]
+  name = "github.com/gorilla/mux"
+  packages = ["."]
+  revision = "53c1911da2b537f792e7cafcb446b05ffe33b996"
+  version = "v1.6.1"
+
+[[projects]]
   branch = "master"
   name = "github.com/gregjones/httpcache"
   packages = [
@@ -187,7 +205,9 @@
   name = "github.com/kolide/kit"
   packages = [
     "env",
-    "logutil"
+    "httputil",
+    "logutil",
+    "tlsutil"
   ]
   revision = "2905b8bccb710fd75f6608a46345d764cf58a047"
 
@@ -230,6 +250,15 @@
   packages = ["."]
   revision = "5f041e8faa004a95c88a202771f4cc3e991971e6"
   version = "v2.0.1"
+
+[[projects]]
+  name = "github.com/pivotal-cf/brokerapi"
+  packages = [
+    ".",
+    "auth"
+  ]
+  revision = "b763fb58cdae010fb90a94387db218c95967f0d5"
+  version = "v2.0.0"
 
 [[projects]]
   name = "github.com/pkg/errors"
@@ -593,6 +622,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "88b55c8b8ff24869bd0396e0ac31d8004f0bbb12c0518d1782197702f8c06bc2"
+  inputs-digest = "653cd005199f64bd204136073f4f3c30e501e4c6193ed56fdfe177fb7fa7be18"
   solver-name = "gps-cdcl"
   solver-version = 1

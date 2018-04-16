@@ -24,6 +24,7 @@ func main() {
 			Usage: "Run server workloads",
 			Subcommands: []cli.Command{
 				command.RunController(),
+				command.RunBroker(),
 			},
 		},
 	}
