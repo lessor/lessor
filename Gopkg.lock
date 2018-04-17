@@ -8,6 +8,12 @@
   version = "v0.20.0"
 
 [[projects]]
+  branch = "master"
+  name = "dmitri.shuralyov.com/text/kebabcase"
+  packages = ["."]
+  revision = "40e40b42552a9cb37d6e98f4ad31f63ae53ea43a"
+
+[[projects]]
   name = "github.com/PuerkitoBio/purell"
   packages = ["."]
   revision = "0bcb03f4b4d0a9428594752bd2a3b9aa0a9d4bd4"
@@ -33,6 +39,12 @@
   ]
   revision = "26b41036311f2da8242db402557a0dbd09dc83da"
   version = "v2.6.0"
+
+[[projects]]
+  name = "github.com/fatih/structs"
+  packages = ["."]
+  revision = "a720dfa8df582c51dee1b36feabb906bde1588bd"
+  version = "v1.0"
 
 [[projects]]
   name = "github.com/ghodss/yaml"
@@ -84,6 +96,49 @@
   packages = ["."]
   revision = "259ab82a6cad3992b4e21ff5cac294ccb06474bc"
   version = "v1.7.0"
+
+[[projects]]
+  name = "github.com/gobuffalo/envy"
+  packages = ["."]
+  revision = "ef60bfc50c8f92d1ee64674d8ce7a48f1f67625e"
+  version = "v1.6.2"
+
+[[projects]]
+  name = "github.com/gobuffalo/plush"
+  packages = [
+    ".",
+    "ast",
+    "lexer",
+    "parser",
+    "token"
+  ]
+  revision = "2c66199a1b24507c54f4b9b478ead39890e86ff6"
+  version = "v3.7.1"
+
+[[projects]]
+  name = "github.com/gobuffalo/tags"
+  packages = [
+    ".",
+    "form",
+    "form/bootstrap"
+  ]
+  revision = "82cd7696c84aba829b74e81814ff489b64e7b56a"
+  version = "v2.0.5"
+
+[[projects]]
+  name = "github.com/gobuffalo/uuid"
+  packages = ["."]
+  revision = "3a9fb6c5c481d4886f1e9323c61ad743fb955860"
+  version = "v2.0.0"
+
+[[projects]]
+  name = "github.com/gobuffalo/validate"
+  packages = [
+    ".",
+    "validators"
+  ]
+  revision = "42d8db6e06e617cdedcc7a849d6690a2cb5a8d28"
+  version = "v2.0.0"
 
 [[projects]]
   name = "github.com/gogo/protobuf"
@@ -171,6 +226,12 @@
   version = "v0.3.4"
 
 [[projects]]
+  name = "github.com/joho/godotenv"
+  packages = ["."]
+  revision = "a79fa1e548e2c689c241d10173efd51e5d689d5b"
+  version = "v1.2.0"
+
+[[projects]]
   name = "github.com/json-iterator/go"
   packages = ["."]
   revision = "ca39e5af3ece67bbcda3d0f4f56a8e24d9f2dad4"
@@ -214,6 +275,27 @@
   revision = "8b799c424f57fa123fc63a99d6383bc6e4c02578"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/markbates/going"
+  packages = [
+    "defaults",
+    "wait"
+  ]
+  revision = "0576708c56cea02331f864fe6e157ac7841923e4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/markbates/inflect"
+  packages = ["."]
+  revision = "fbc6b23ce49e2578f572d2e72bb72fa03c7145de"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/microcosm-cc/bluemonday"
+  packages = ["."]
+  revision = "995366fdf961d03629cd17361bddd32745718e2c"
+
+[[projects]]
   name = "github.com/modern-go/concurrent"
   packages = ["."]
   revision = "bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94"
@@ -244,10 +326,108 @@
   version = "v0.8.0"
 
 [[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/russross/blackfriday"
+  packages = ["."]
+  revision = "55d61fa8aa702f59229e6cff85793c22e580eaf5"
+  version = "v1.5.1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/serenize/snaker"
+  packages = ["."]
+  revision = "a683aaf2d516deecd70cad0c72e3ca773ecfcef0"
+
+[[projects]]
+  name = "github.com/sergi/go-diff"
+  packages = ["diffmatchpatch"]
+  revision = "1744e2970ca51c86172c8190fadad617561ed6e7"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/github_flavored_markdown"
+  packages = ["."]
+  revision = "28433ea3fc83827d77424782fefdcd94703366cc"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/go"
+  packages = [
+    "parserutil",
+    "printerutil",
+    "reflectfind",
+    "reflectsource"
+  ]
+  revision = "47fa5b7ceee66c60ac3a281416089035bf526a3c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/go-goon"
+  packages = ["."]
+  revision = "37c2f522c041b74919a9e5e3a6c5c47eb34730a5"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/graphql"
+  packages = ["ident"]
+  revision = "3d276b9dcc6b1e0adf19557a8de5cb8632c07697"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/highlight_diff"
+  packages = ["."]
+  revision = "09bb4053de1b1d872a9f25dc21378fa71dca4e4e"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/highlight_go"
+  packages = ["."]
+  revision = "78fb10f4a5f89e812a5e26ab723b954a51226086"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/octiconssvg"
+  packages = ["."]
+  revision = "91d14858bf8188ba5143d67a3a677ea559000b0a"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/sanitized_anchor_name"
+  packages = ["."]
+  revision = "86672fcb3f950f35f2e675df2240550f2a50762f"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/sourcegraph/annotate"
+  packages = ["."]
+  revision = "f4cad6c6324d3f584e1743d8b3e0e017a5f3a636"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/sourcegraph/syntaxhighlight"
+  packages = ["."]
+  revision = "bd320f5d308e1a3c4314c678d8227a0d72574ae7"
+
+[[projects]]
   name = "github.com/spf13/pflag"
   packages = ["."]
   revision = "e57e3eeb33f795204c1ca35f56c44f83227c6e66"
   version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = [
+    "assert",
+    "require"
+  ]
+  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
+  version = "v1.2.1"
 
 [[projects]]
   name = "github.com/urfave/cli"
@@ -267,6 +447,8 @@
   packages = [
     "context",
     "context/ctxhttp",
+    "html",
+    "html/atom",
     "http2",
     "http2/hpack",
     "idna",
@@ -599,6 +781,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5221a3e02ed9e274617c58e86a6e351ad3d9c7e33a19ce2e3c240747e1a7685e"
+  inputs-digest = "6d17f9d411b8cf673f7a3d2656e19a6a74f067c1d243331ce3d5dad480775db9"
   solver-name = "gps-cdcl"
   solver-version = 1
