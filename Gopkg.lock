@@ -198,6 +198,12 @@
   revision = "b84e30acd515aadc4b783ad4ff83aff3299bdfe0"
 
 [[projects]]
+  name = "github.com/kubernetes-incubator/service-catalog"
+  packages = ["pkg/apis/servicecatalog"]
+  revision = "9c360198dd3960375725dfaa486762df17b6ca86"
+  version = "v0.1.4"
+
+[[projects]]
   branch = "master"
   name = "github.com/mailru/easyjson"
   packages = [
@@ -593,6 +599,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "88b55c8b8ff24869bd0396e0ac31d8004f0bbb12c0518d1782197702f8c06bc2"
+  inputs-digest = "5221a3e02ed9e274617c58e86a6e351ad3d9c7e33a19ce2e3c240747e1a7685e"
   solver-name = "gps-cdcl"
   solver-version = 1

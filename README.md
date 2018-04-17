@@ -4,7 +4,7 @@
   <img src="./docs/images/gophers/boxes.png" width="400">
 </p>
 
-Deploy, manage, and secure single-tenant applications on [Kubernetes](https://kubernetes.io/).
+Deploy, manage, and secure applications on [Kubernetes](https://kubernetes.io/).
 
 - [Introduction](#introduction)
 - [Motivation](#motivation)
@@ -23,9 +23,11 @@ In addition, here are some other documents that may be helpful:
 >
 > a person or company that leases a good or service to an entity according to an agreement
 
-Lessor is an open platform for deploying, managing, and securing many instances of single-tenant applications on [Kubernetes](https://kubernetes.io/). Lessor allows you to independently operator and scale each tenant with network and data isolation by default. This approach makes application development simpler and more secure.
+Lessor is an open platform for deploying, managing, and securing many instances of tenanted applications on [Kubernetes](https://kubernetes.io/). Lessor allows you to independently operate and scale each tenant with network and data isolation by default. This approach makes application development simpler and more secure.
 
-## Motivation
+## Use Cases
+
+### B2B SaaS
 
 Companies that create products for other companies or teams often have to reason about how to deal with the tenancy of each team. There are generally two paths:
 
@@ -42,9 +44,63 @@ Lessor uses the [Operator](https://coreos.com/blog/introducing-operators.html) p
 
 While most Kubernetes Operators deal with the administration of a single service, Lessor aims to automate larger application and cluster SRE objectives such as:
 
-- tenant provisioning
+- provisioning
 - high-velocity deployments
 - external resource acquisition
 - secret distribution
 
-Each "tenant" in your environment is represented as a Kubernetes resource. Each Tenant resource contains the metadata that describes how to configure, deploy, and connect the microservices which make up the tenant. See one of the [example tenants](./examples/tenant.yaml) for an overview of the configurable attributes of a tenant.
+### `Tenant` Resource
+
+Each complete application instance in your environment is represented as a Kubernetes resource called "Tenant". Each Tenant resource contains the metadata that describes how to configure, deploy, and connect the microservices which make up the instance. See an [example CRD](./examples/crd.yaml) for a more complete example of the configurable attributes of a tenant.
+
+The following is a more minimal tenant that shows how to use the Open Service Broker API to bind to a MySQL server in Azure and deploy a set of minimally templated Kubernetes resources.
+
+```yaml
+apiVersion: lessor.io/v1
+kind: Tenant
+metadata:
+  name: acme-labs
+  labels:
+    name: acme-labs
+
+spec:
+  # Namespace defaults to the name of the tenant. This is a no-op:
+  namespace: acme-labs
+
+  # External services can be bound to using the Open Service Broker API. The
+  # Open Service Broker API defines an HTTP(S) interface between Platforms and Service
+  # Brokers.
+  #
+  # Lessor allows you to define the Service Instance and will automatically create the
+  # appropriate binding. The stateless applications should be aware of things like what
+  # format secrets will be in when bound, etc. For this reason, during development,
+  # consider creating the service instance first, observing the secrets that are put in
+  # the namespace, and writing your Kubernetes configurations appropriately.
+  serviceCatalog:
+    instances:
+      - clusterServiceClassExternalName: azure-mysql
+        clusterServicePlanExternalName: basic50
+        parameters:
+          location: eastus
+          resourceGroup: demo
+
+  # Deployable resources can be generated in a number of ways. As you're
+  # growing, it can be easiest to write raw Kubernetes yaml. As your deployments
+  # become more complex and related, it can be helpful to use a templating
+  # abstraction like Helm, ksonnet, various templating engines, etc.
+  apps:
+
+    # Templates are similar to Helm packages in structure, but slightly simpler in
+    # practice. Each item has two main components:
+    # - template: a reference on how to get a template file (URL, file, secret, etc)
+    # - values: values to interpolate into the template (in addition to defaults)
+    templates:
+
+      # If template type is "golang", the template is defined using the
+      # {{ .GoTemplate }} convention: https://golang.org/pkg/text/template/
+      - name: kuard-golang
+        type: golang
+        url: https://lessor.io/latest/examples/templates/kuard-golang.yaml
+        values:
+          image: gcr.io/kuar-demo/kuard-amd64:1
+```

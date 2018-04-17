@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -19,9 +20,24 @@ type Tenant struct {
 }
 
 type TenantSpec struct {
-	Namespace    string `json:"namespace"`
-	Organization string `json:"organization"`
-	Email        string `json:"email"`
+	Namespace      string             `json:"namespace"`
+	ServiceCatalog ServiceCatalogSpec `json:"serviceCatalog"`
+	Apps           AppSpec            `json:"apps"`
+}
+
+type AppSpec struct {
+	Templates []TemplateSpec `json:"templates"`
+}
+
+type TemplateSpec struct {
+	Name   string            `json:"name"`
+	Type   string            `json:"type"`
+	Url    string            `json:"url"`
+	Values map[string]string `json:"values"`
+}
+
+type ServiceCatalogSpec struct {
+	Instances []*servicecatalog.ServiceInstanceSpec `json:"instances"`
 }
 
 func (t *Tenant) Namespace() string {

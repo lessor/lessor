@@ -29,8 +29,7 @@ spec:
   # - Azure maintains a nice broker: https://github.com/azure/open-service-broker-azure
   serviceCatalog:
     instances:
-      - name: mysql
-        clusterServiceClassExternalName: azure-mysql
+      - clusterServiceClassExternalName: azure-mysql
         clusterServicePlanExternalName: basic50
         parameters:
           location: eastus
@@ -40,8 +39,7 @@ spec:
             endIPAddress: "255.255.255.255"
             name: "AllowAll"
 
-      - name: redis
-        clusterServiceClassExternalName: azure-rediscache
+      - clusterServiceClassExternalName: azure-rediscache
         clusterServicePlanExternalName: basic
         parameters:
           location: eastus
