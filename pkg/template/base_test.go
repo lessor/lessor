@@ -1,10 +1,13 @@
-apiVersion: apps/v1
+package template_test
+
+func rendered() string {
+	return `apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     run: kuard
   name: kuard
-  namespace: <%= namespace %>
+  namespace: acme-labs
 spec:
   replicas: 1
   selector:
@@ -16,6 +19,7 @@ spec:
         run: kuard
     spec:
       containers:
-      - image: <%= image %>
+      - image: gcr.io/kuar-demo/kuard-amd64:1
         imagePullPolicy: IfNotPresent
-        name: kuard
+        name: kuard`
+}
