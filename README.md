@@ -7,7 +7,7 @@
 Deploy, manage, and secure applications on [Kubernetes](https://kubernetes.io/).
 
 - [Introduction](#introduction)
-- [Motivation](#motivation)
+- [Use Cases](#use-cases)
 - [How Does It Work?](#how-does-it-work)
 
 In addition, here are some other documents that may be helpful:
@@ -70,40 +70,23 @@ metadata:
     name: acme-labs
 
 spec:
-  # Namespace defaults to the name of the tenant. This is a no-op:
-  namespace: acme-labs
-
-  # External services can be bound to using the Open Service Broker API. The
-  # Open Service Broker API defines an HTTP(S) interface between Platforms and Service
-  # Brokers.
+  # External services can be bound to using the Open Service Broker API.
   #
   # Lessor allows you to define the Service Instance and will automatically create the
   # appropriate binding. The stateless applications should be aware of things like what
-  # format secrets will be in when bound, etc. For this reason, during development,
-  # consider creating the service instance first, observing the secrets that are put in
-  # the namespace, and writing your Kubernetes configurations appropriately.
-  serviceCatalog:
-    instances:
+  # format secrets will be in when bound, etc.
+  catalog:
+    serviceInstances:
       - clusterServiceClassExternalName: azure-mysql
         clusterServicePlanExternalName: basic50
         parameters:
           location: eastus
           resourceGroup: demo
 
-  # Deployable resources can be generated in a number of ways. As you're
-  # growing, it can be easiest to write raw Kubernetes yaml. As your deployments
-  # become more complex and related, it can be helpful to use a templating
-  # abstraction like Helm, ksonnet, various templating engines, etc.
+  # Deployable resources can be generated via simple templates. A number of
+  # template formats are supported.
   apps:
-
-    # Templates are similar to Helm packages in structure, but slightly simpler in
-    # practice. Each item has two main components:
-    # - template: a reference on how to get a template file (URL, file, secret, etc)
-    # - values: values to interpolate into the template (in addition to defaults)
     templates:
-
-      # If template type is "handlebars", the template is defined using the
-      # {{ handlebars }} convention: https://github.com/aymerick/raymond
       - name: kuard-handlebars
         type: handlebars
         url: https://lessor.io/latest/examples/templates/kuard-handlebars.yaml

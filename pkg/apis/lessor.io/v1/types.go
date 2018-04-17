@@ -20,9 +20,9 @@ type Tenant struct {
 }
 
 type TenantSpec struct {
-	Namespace      string             `json:"namespace"`
-	ServiceCatalog ServiceCatalogSpec `json:"serviceCatalog"`
-	Apps           AppSpec            `json:"apps"`
+	Namespace string      `json:"namespace"`
+	Catalog   CatalogSpec `json:"catalog"`
+	Apps      AppSpec     `json:"apps"`
 }
 
 type AppSpec struct {
@@ -36,8 +36,8 @@ type TemplateSpec struct {
 	Values map[string]string `json:"values"`
 }
 
-type ServiceCatalogSpec struct {
-	Instances []*servicecatalog.ServiceInstanceSpec `json:"instances"`
+type CatalogSpec struct {
+	ServiceInstances []*servicecatalog.ServiceInstanceSpec `json:"serviceInstances"`
 }
 
 func (t *Tenant) Namespace() string {
