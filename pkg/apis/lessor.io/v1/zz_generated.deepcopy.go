@@ -5,7 +5,7 @@
 package v1
 
 import (
-	servicecatalog "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog"
+	v1beta1 "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	conversion "k8s.io/apimachinery/pkg/conversion"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	reflect "reflect"
@@ -80,12 +80,12 @@ func (in *CatalogSpec) DeepCopyInto(out *CatalogSpec) {
 	*out = *in
 	if in.ServiceInstances != nil {
 		in, out := &in.ServiceInstances, &out.ServiceInstances
-		*out = make([]*servicecatalog.ServiceInstanceSpec, len(*in))
+		*out = make([]*v1beta1.ServiceInstanceSpec, len(*in))
 		for i := range *in {
 			if (*in)[i] == nil {
 				(*out)[i] = nil
 			} else {
-				(*out)[i] = new(servicecatalog.ServiceInstanceSpec)
+				(*out)[i] = new(v1beta1.ServiceInstanceSpec)
 				(*in)[i].DeepCopyInto((*out)[i])
 			}
 		}

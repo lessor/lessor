@@ -271,7 +271,10 @@
 
 [[projects]]
   name = "github.com/kubernetes-incubator/service-catalog"
-  packages = ["pkg/apis/servicecatalog"]
+  packages = [
+    "pkg/apis/servicecatalog",
+    "pkg/apis/servicecatalog/v1beta1"
+  ]
   revision = "9c360198dd3960375725dfaa486762df17b6ca86"
   version = "v0.1.4"
 
@@ -347,6 +350,12 @@
   packages = ["."]
   revision = "55d61fa8aa702f59229e6cff85793c22e580eaf5"
   version = "v1.5.1"
+
+[[projects]]
+  name = "github.com/satori/go.uuid"
+  packages = ["."]
+  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
+  version = "v1.2.0"
 
 [[projects]]
   branch = "master"
@@ -792,6 +801,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5441860619a00d5f0d0fccc06710086b9f969bff2560b0a3d86c0cadb2447802"
+  inputs-digest = "06b362a8c5904ef91bb3ca60aecd00ee202572e36b7c35aa4b145391759a135e"
   solver-name = "gps-cdcl"
   solver-version = 1
