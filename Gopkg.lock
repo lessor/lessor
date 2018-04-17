@@ -26,6 +26,17 @@
   revision = "de5bf2ad457846296e2031421a34e2568e304e35"
 
 [[projects]]
+  name = "github.com/aymerick/raymond"
+  packages = [
+    ".",
+    "ast",
+    "lexer",
+    "parser"
+  ]
+  revision = "2eebd0f5dd9564c0c6e439df11d8a3c7b9b9ab11"
+  version = "v2.0.2"
+
+[[projects]]
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
   revision = "346938d642f2ec3594ed81d874461961cd0faa76"
@@ -781,6 +792,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "6d17f9d411b8cf673f7a3d2656e19a6a74f067c1d243331ce3d5dad480775db9"
+  inputs-digest = "5441860619a00d5f0d0fccc06710086b9f969bff2560b0a3d86c0cadb2447802"
   solver-name = "gps-cdcl"
   solver-version = 1
