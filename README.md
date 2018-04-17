@@ -38,6 +38,12 @@ When faced with these two options, most companies choose to build the multi-tena
 
 Lessor aims to make it easier to choose to deploy and proxy to many instances of a single-tenant application by providing tools, services, and libraries that are purpose-built for this kind of deployment strategy.
 
+### Staging Environments
+
+Often, during the development process, developers need a quick (but reliable) way to deply an instance of an application (with various versions of it's components). Perhaps this is apart of a CI system that auto-deploys every PR to a repo or perhaps you need to create a demo instance of an app to perform user research.
+
+Lessor aims to make this process easier by providing a typed API that can be managed via source-controlled files and RBAC for deploying application instances.
+
 ## How Does It Work?
 
 Lessor uses the [Operator](https://coreos.com/blog/introducing-operators.html) pattern to encode domain-specific operational knowledge into software. The Operator pattern describes using a Kubernetes [Custom Resorce Definition](https://kubernetes.io/docs/concepts/api-extension/custom-resources/) and a [Controller](https://github.com/kubernetes/community/blob/master/contributors/devel/controllers.md) to provide a declarative configuration interface to a self-healing system.
@@ -51,7 +57,7 @@ While most Kubernetes Operators deal with the administration of a single service
 
 ### `Tenant` Resource
 
-Each complete application instance in your environment is represented as a Kubernetes resource called "Tenant". Each Tenant resource contains the metadata that describes how to configure, deploy, and connect the microservices which make up the instance. See an [example CRD](./examples/crd.yaml) for a more complete example of the configurable attributes of a tenant.
+Each complete application instance in your environment is represented by the "Tenant" Kubernetes custom resource. Each Tenant resource contains the metadata that describes how to configure, deploy, and connect the microservices which make up the tenant. See an [example CRD](./examples/crd.yaml) for a more complete example of the configurable attributes of a tenant.
 
 The following is a more minimal tenant that shows how to use the Open Service Broker API to bind to a MySQL server in Azure and deploy a set of minimally templated Kubernetes resources.
 
@@ -96,11 +102,11 @@ spec:
     # - values: values to interpolate into the template (in addition to defaults)
     templates:
 
-      # If template type is "golang", the template is defined using the
-      # {{ .GoTemplate }} convention: https://golang.org/pkg/text/template/
-      - name: kuard-golang
-        type: golang
-        url: https://lessor.io/latest/examples/templates/kuard-golang.yaml
+      # If template type is "handlebars", the template is defined using the
+      # {{ handlebars }} convention: https://github.com/aymerick/raymond
+      - name: kuard-handlebars
+        type: handlebars
+        url: https://lessor.io/latest/examples/templates/kuard-handlebars.yaml
         values:
           image: gcr.io/kuar-demo/kuard-amd64:1
 ```

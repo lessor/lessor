@@ -57,14 +57,6 @@ spec:
     # - values: values to interpolate into the template (in addition to defaults)
     templates:
 
-      # If template type is "golang", the template is defined using the
-      # {{ .GoTemplate }} convention: https://golang.org/pkg/text/template/
-      - name: kuard-golang
-        type: golang
-        url: https://lessor.io/latest/examples/templates/kuard-golang.yaml
-        values:
-          image: gcr.io/kuar-demo/kuard-amd64:1
-
       # If template type is "plush", the template is defined using the
       # <%= plush %> conventions: https://github.com/gobuffalo/plush
       - name: kuard-plush
@@ -73,3 +65,18 @@ spec:
         values:
           image: gcr.io/kuar-demo/kuard-amd64:1
 
+      # If template type is "handlebars", the template is defined using the
+      # {{ handlebars }} convention: https://github.com/aymerick/raymond
+      - name: kuard-golang
+        type: handlebars
+        url: https://lessor.io/latest/examples/templates/kuard-handlebars.yaml
+        values:
+          image: gcr.io/kuar-demo/kuard-amd64:1
+
+      # If template type is "golang", the template is defined using the
+      # {{ .GoTemplate }} convention: https://golang.org/pkg/text/template/
+      - name: kuard-golang
+        type: golang
+        url: https://lessor.io/latest/examples/templates/kuard-golang.yaml
+        values:
+          image: gcr.io/kuar-demo/kuard-amd64:1
