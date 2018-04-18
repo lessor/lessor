@@ -176,3 +176,32 @@ import (
 	"k8s.io/client-go/tools/cache"
 )
 ```
+
+### Generating Service Catalog Manifests
+
+Service Catalog suggests using Helm to install the required components. See the [Service Catalog Documentation](https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/install.md) for the latest information on installing Service Catalog. The security model of Helm does not effectively account for the fact that the Kubernetes cluster may be a hostile environment. To install Service Catalog, the installation instructions also suggest giving the Tiller (Helm 2's server-side component) even more privileges.
+
+The [Helm 3 Security Considerations Design Doc](https://github.com/kubernetes-helm/community/blob/master/helm-v3/007-security.md) explains that since Helm 3 will be purely client-side, the users access control properties will be used to install components in a way that ties into Kubernetes RBAC. Because of this future, [Helm V2 Access Control is never going to exist](https://github.com/kubernetes/helm/issues/1918#issuecomment-378700824). For this reason, I do not think it is reasonable to suggest using Helm to install the Service Catalog components.
+
+Until Service Catalog can reliably be installed via some other means, we should generate a Helm manifest via the `helm install --dry-run --debug` in a one-off cluster and include the resultant resources in our bundled manifest. The following is a set of commands to generate a manifest.
+
+```bash
+# install the Tiller into the kube-system namespace
+helm init
+
+# add the Service Catalog Helm repository
+helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
+
+# do a dry-run to generate the yaml (along with other logs)
+helm install svc-cat/catalog \
+  --name service \
+  --namespace kube-catalog \
+  --dry-run --debug > examples/service-catalog.yaml
+
+# edit out the parts you don't want, make sure namespaces are correct, etc
+vim examples/service-catalog.yaml
+
+# uninstall Helm
+kubectl delete deployment tiller-deploy -n kube-system
+kubectl delete service tiller-deploy -n kube-system
+```
