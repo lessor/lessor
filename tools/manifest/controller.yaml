@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: lessor-controller
+  name: lessor-controller
+  namespace: lessor-system
+spec:
+  selector:
+    matchLabels:
+      name: lessor-controller
+  template:
+    metadata:
+      labels:
+        name: lessor-controller
+      name: lessor-controller
+    spec:
+      containers:
+      - command:
+        - lessor
+        - run
+        - controller
+        - --debug
+        image: gcr.io/lessor-io/lessor:latest
+        imagePullPolicy: Always
+        name: lessor-controller
+      imagePullSecrets:
+      - name: gcr-credentials

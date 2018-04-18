@@ -11,6 +11,7 @@ The developer guide has the following sections:
 - [Test](#test)
 - [Run](#run)
 - [Develop](#develop)
+- [Release](#release)
 
 ## Setup
 
@@ -96,9 +97,11 @@ circleci build
 
 To run the Lessor controller locally against the Kubernetes API server that is your currently configured `kubectl` context, run the following:
 
-```
-# create the namespace, CRD, etc
-kubectl apply -f ./examples/development.yaml
+```bash
+# create the CRD, namespaces, etc
+kubectl apply -f ./tools/manifest/crd.yaml
+kubectl apply -f ./tools/manifest/namespaces.yaml
+kubectl apply -f ./tools/service-catalog.yaml
 
 # run the controller locally
 lessor run controller --local --debug
@@ -177,6 +180,8 @@ import (
 )
 ```
 
+## Release
+
 ### Generating Service Catalog Manifests
 
 Service Catalog suggests using Helm to install the required components. See the [Service Catalog Documentation](https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/install.md) for the latest information on installing Service Catalog. The security model of Helm does not effectively account for the fact that the Kubernetes cluster may be a hostile environment. To install Service Catalog, the installation instructions also suggest giving the Tiller (Helm 2's server-side component) even more privileges.
@@ -196,12 +201,20 @@ helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
 helm install svc-cat/catalog \
   --name service \
   --namespace kube-catalog \
-  --dry-run --debug > examples/service-catalog.yaml
+  --dry-run --debug > service-catalog.yaml
 
 # edit out the parts you don't want, make sure namespaces are correct, etc
-vim examples/service-catalog.yaml
+vim service-catalog.yaml
 
 # uninstall Helm
 kubectl delete deployment tiller-deploy -n kube-system
 kubectl delete service tiller-deploy -n kube-system
+```
+
+### Generating The Resource Bundle
+
+The `lessor.yaml` bundle in the root of the repository is an amalgamation of the files in `tools/manifest`. To combine these files together, run the following from the root of the repository:
+
+```
+cat tools/manifest/*.yaml > lessor.yaml
 ```

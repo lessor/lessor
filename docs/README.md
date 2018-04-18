@@ -10,7 +10,7 @@ Deploy, manage, and secure single-tenant applications on [Kubernetes](https://ku
 
 - To learn more about the Lessor project, see the [Project Overview](../README.md)
 - If you're looking to try out Lessor, check out the guide to [Getting Started](./getting-started.md)
-- For development information, command, and patterns, read the [Developer Guide](./developer-guide.md)
+- For development information, commands, and patterns, read the [Developer Guide](./developer-guide.md)
 
 ## Learn More
 
