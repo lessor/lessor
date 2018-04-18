@@ -35,7 +35,7 @@ kubectl get pods --namespace kube-catalog
 Try creating an example tenant:
 
 ```
-kubectl apply -f ./examples/crd.yaml
+kubectl apply -f ./examples/tenant.yaml
 ```
 
 Watch the components that make up the tenant start up:

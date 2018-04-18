@@ -11,6 +11,7 @@ The developer guide has the following sections:
 - [Test](#test)
 - [Run](#run)
 - [Develop](#develop)
+- [Release](#release)
 
 ## Setup
 
@@ -98,7 +99,10 @@ To run the Lessor controller locally against the Kubernetes API server that is y
 
 ```
 # create the namespace, CRD, etc
-kubectl apply -f ./examples/development.yaml
+kubectl apply -f ./tools/development.yaml
+
+# install service catalog
+kubectl apply -f ./tools/service-catalog.yaml
 
 # run the controller locally
 lessor run controller --local --debug
@@ -177,6 +181,8 @@ import (
 )
 ```
 
+## Release
+
 ### Generating Service Catalog Manifests
 
 Service Catalog suggests using Helm to install the required components. See the [Service Catalog Documentation](https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/install.md) for the latest information on installing Service Catalog. The security model of Helm does not effectively account for the fact that the Kubernetes cluster may be a hostile environment. To install Service Catalog, the installation instructions also suggest giving the Tiller (Helm 2's server-side component) even more privileges.
@@ -204,4 +210,17 @@ vim examples/service-catalog.yaml
 # uninstall Helm
 kubectl delete deployment tiller-deploy -n kube-system
 kubectl delete service tiller-deploy -n kube-system
+```
+
+### Generating The Resource Bundle
+
+The `lessor.yaml` bundle in the root of the repository is an amalgamation of the files in `tools/manifest`:
+
+- `tools/manifest/lessor.yaml`: the latest Lessor components
+- `tools/manifest/service-catalog.yaml`: the suggested Service Catalog components
+
+To combine these files together, run the following from the root of the repository:
+
+```
+cat tools/manifest/*.yaml > lessor.yaml
 ```
