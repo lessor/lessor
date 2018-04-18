@@ -10,20 +10,24 @@ To install Lessor in a Kubernetes cluster, you'll need:
 
 - `kubectl` configured with admin access to a Kubernetes cluster
 
-Run the following to install the Lessor components from a hosted manifest:
+Run the following from the root of the repository to install the latest Service Catalog and Lessor components:
 
 ```
-curl -L https://lessor.io/latest/lessor.yaml | kubectl apply -f -
+kubectl apply -f ./lessor.yaml
 ```
 
 ## Verifying The Installation
 
-Ensure the Kubernetes pods for the following Deployments are deployed and all containers are up and running:
-
-- `lessor-controller`
+Verify that the `lessor-controller` deployment is running and healthy in `lessor-system`:
 
 ```
 kubectl get pods --namespace lessor-system
+```
+
+Verify that the `service-catalog-apiserver` and `service-catalog-controller-manager` deployments are running and healthy in `kube-catalog`:
+
+```
+kubectl get pods --namespace kube-catalog
 ```
 
 ## Deploy An Application
@@ -31,7 +35,7 @@ kubectl get pods --namespace lessor-system
 Try creating an example tenant:
 
 ```
-curl -L https://lessor.io/latest/examples/tenant.yaml | kubectl apply -f -
+kubectl apply -f ./examples/crd.yaml
 ```
 
 Watch the components that make up the tenant start up:
@@ -55,11 +59,5 @@ You should see be able to navigate to http://localhost:8080 and see the followin
 To delete all Lessor deployment and services, you can delete the resources you created earlier `lessor.yaml`:
 
 ```
-curl -L https://lessor.io/latest/lessor.yaml | kubectl delete -f -
-```
-
-To delete all tenants and the Custom Resource Definition, run:
-
-```
-kubectl delete crd tenants.lessor.io
+kubectl delete -f ./lessor.yaml
 ```
