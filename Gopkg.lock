@@ -4,8 +4,8 @@
 [[projects]]
   name = "cloud.google.com/go"
   packages = ["compute/metadata"]
-  revision = "4b98a6370e36d7a85192e7bad08a4ebd82eac2a8"
-  version = "v0.20.0"
+  revision = "29f476ffa9c4cd4fd14336b6043090ac1ad76733"
+  version = "v0.21.0"
 
 [[projects]]
   branch = "master"
@@ -48,8 +48,8 @@
     ".",
     "log"
   ]
-  revision = "26b41036311f2da8242db402557a0dbd09dc83da"
-  version = "v2.6.0"
+  revision = "92cd0815dd1a028a6e69faee9757c7436238e252"
+  version = "v2.6.1"
 
 [[projects]]
   name = "github.com/fatih/structs"
@@ -94,7 +94,7 @@
   branch = "master"
   name = "github.com/go-openapi/spec"
   packages = ["."]
-  revision = "370d9e047557906322be8396e77cb0376be6cb96"
+  revision = "bcff419492eeeb01f76e77d2ebc714dc97b607f5"
 
 [[projects]]
   branch = "master"
@@ -437,8 +437,8 @@
 [[projects]]
   name = "github.com/spf13/pflag"
   packages = ["."]
-  revision = "e57e3eeb33f795204c1ca35f56c44f83227c6e66"
-  version = "v1.0.0"
+  revision = "583c0c0531f06d5278b7d917446061adc344b5cd"
+  version = "v1.0.1"
 
 [[projects]]
   name = "github.com/stretchr/testify"
@@ -459,7 +459,7 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
-  revision = "b2aa35443fbc700ab74c586ae79b81c171851023"
+  revision = "d6449816ce06963d9d136eee5a56fca5b0616e7e"
 
 [[projects]]
   branch = "master"
@@ -469,12 +469,13 @@
     "context/ctxhttp",
     "html",
     "html/atom",
+    "http/httpguts",
     "http2",
     "http2/hpack",
     "idna",
     "lex/httplex"
   ]
-  revision = "61147c48b25b599e5b561d2e9c4f3e1ef489ca41"
+  revision = "d41e8174641f662c5a2d1c7a5f9e828788eb8706"
 
 [[projects]]
   branch = "master"
@@ -486,7 +487,7 @@
     "jws",
     "jwt"
   ]
-  revision = "921ae394b9430ed4fb549668d7b087601bd60a81"
+  revision = "6881fee410a5daf86371371f9ad451b95e168b71"
 
 [[projects]]
   branch = "master"
@@ -495,7 +496,7 @@
     "unix",
     "windows"
   ]
-  revision = "3b87a42e500a6dc65dae1a55d0b641295971163e"
+  revision = "b126b21c05a91c856b027c16779c12e3bf236954"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -581,7 +582,7 @@
     "storage/v1alpha1",
     "storage/v1beta1"
   ]
-  revision = "8759fda11383a1087cf16b1500ce5804fa9f32e7"
+  revision = "e68f57a7c005317989301f4e8eb654f01f08eb05"
 
 [[projects]]
   branch = "release-1.8"
@@ -631,7 +632,7 @@
     "third_party/forked/golang/json",
     "third_party/forked/golang/reflect"
   ]
-  revision = "ab7fc865fb0881d161f37adef3e5a67b89a18d05"
+  revision = "62737119932505aba8df99644184e0705ea58df1"
 
 [[projects]]
   branch = "release-6.0"
@@ -758,7 +759,7 @@
     "util/jsonpath",
     "util/workqueue"
   ]
-  revision = "90539b4e75a8daaf7f67c3874c6180bfb1a63936"
+  revision = "65b43df093d1d129e9608582d98ac9bfbba7e486"
 
 [[projects]]
   branch = "release-1.8"
@@ -773,7 +774,7 @@
     "cmd/client-gen/path",
     "cmd/client-gen/types"
   ]
-  revision = "acb3006c59dc9e9b7a2a1df2bdf9e5f4dfb36c4f"
+  revision = "6158d2a0650650695aaabafc8ebcb2ef55480c6f"
 
 [[projects]]
   name = "k8s.io/gengo"
@@ -790,13 +791,13 @@
   branch = "master"
   name = "k8s.io/kube-openapi"
   packages = ["pkg/common"]
-  revision = "cd0308977f05a0de033c0e8ce1860b317e360dca"
+  revision = "f442ecb314a3679150c272e2b9713d8deed5955d"
 
 [[projects]]
   branch = "master"
   name = "k8s.io/sample-controller"
   packages = ["pkg/signals"]
-  revision = "709fd539aa224d7b2b878c0bbdb34c2b527bbd42"
+  revision = "119594ddec891a4a19381a3317d967a6b93a2b6e"
 
 [solve-meta]
   analyzer-name = "dep"
