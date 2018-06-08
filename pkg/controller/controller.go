@@ -35,8 +35,6 @@ type Controller struct {
 	// lessorClient is a clientset for our own API group
 	lessorClient clientset.Interface
 
-	templateNamespace string
-
 	namespacesLister corelisters.NamespaceLister
 	namespacesSynced cache.InformerSynced
 
@@ -119,7 +117,6 @@ func NewController(
 		logger:                     logger,
 		kubeClient:                 kubeClient,
 		lessorClient:               lessorClient,
-		templateNamespace:          "lessor-template",
 		namespacesLister:           namespaceInformer.Lister(),
 		namespacesSynced:           namespaceInformer.Informer().HasSynced,
 		secretsLister:              secretInformer.Lister(),

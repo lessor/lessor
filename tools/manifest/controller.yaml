@@ -17,13 +17,11 @@ spec:
       name: lessor-controller
     spec:
       containers:
-      - command:
+      - name: lessor-controller
+        command:
         - lessor
         - run
         - controller
         - --debug
         image: gcr.io/lessor-io/lessor:latest
         imagePullPolicy: Always
-        name: lessor-controller
-      imagePullSecrets:
-      - name: gcr-credentials
