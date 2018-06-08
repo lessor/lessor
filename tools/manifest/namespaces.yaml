@@ -3,8 +3,3 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: lessor-system
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: lessor-template
