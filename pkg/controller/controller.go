@@ -9,7 +9,7 @@ import (
 	clientset "github.com/lessor/lessor/pkg/client/clientset/versioned"
 	lessorScheme "github.com/lessor/lessor/pkg/client/clientset/versioned/scheme"
 	informers "github.com/lessor/lessor/pkg/client/informers/externalversions"
-	listers "github.com/lessor/lessor/pkg/client/listers/lessor/v1"
+	listers "github.com/lessor/lessor/pkg/client/listers/lessor.io/v1"
 
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/util/runtime"

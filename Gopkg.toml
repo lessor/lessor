@@ -1,23 +1,33 @@
 required = ["k8s.io/code-generator/cmd/client-gen"]
 
-[[constraint]]
+[[override]]
   name = "k8s.io/apimachinery"
-  branch = "release-1.8"
+  branch = "release-1.10"
 
-[[constraint]]
+[[override]]
+  name = "k8s.io/apiserver"
+  branch = "release-1.10"
+
+[[override]]
   name = "k8s.io/client-go"
-  branch = "release-6.0"
+  branch = "release-7.0"
 
-[[constraint]]
+[[override]]
   name = "k8s.io/code-generator"
-  branch = "release-1.8"
+  branch = "release-1.10"
 
 # golang/dep does not follow k8s.io/code-generator's Godeps.json and gengo's master
 # version does not work with release-1.8 k8s.io/code-generator. So we have to
 # override it.
 [[override]]
   name = "k8s.io/gengo"
-  revision = "9e661e9308f078838e266cca1c673922088c0ea4"
+  revision = "01a732e01d00cb9a81bb0ca050d3e6d2b947927b"
+
+# To use reference package:
+#   vendor/k8s.io/kubernetes/pkg/util/parsers/parsers.go:36:16: undefined: reference.ParseNormalizedNamed
+[[override]]
+  name = "github.com/docker/distribution"
+  branch = "master"
 
 [[constraint]]
   name = "github.com/gobuffalo/plush"

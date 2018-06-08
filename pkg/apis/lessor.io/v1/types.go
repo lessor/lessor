@@ -1,7 +1,6 @@
 package v1
 
 import (
-	servicecatalog "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -20,38 +19,21 @@ type Tenant struct {
 }
 
 type TenantSpec struct {
-	Namespace string      `json:"namespace"`
-	Catalog   CatalogSpec `json:"catalog"`
-	Apps      AppSpec     `json:"apps"`
+	Namespaces []string `json:"namespaces"`
 }
 
-type AppSpec struct {
-	Templates []TemplateSpec `json:"templates"`
-}
-
-type TemplateSpec struct {
-	Name   string            `json:"name"`
-	Type   string            `json:"type"`
-	Url    string            `json:"url"`
-	Values map[string]string `json:"values"`
-}
-
-type CatalogSpec struct {
-	ServiceInstances []*servicecatalog.ServiceInstanceSpec `json:"serviceInstances"`
-}
-
-func (t *Tenant) Namespace() string {
-	if t.Spec.Namespace == "" {
-		return t.Name
+func (t *Tenant) Namespaces() []string {
+	if t.Spec.Namespaces == nil || len(t.Spec.Namespaces) == 0 {
+		return []string{t.Name}
 	}
 
-	return t.Spec.Namespace
+	return t.Spec.Namespaces
 }
 
-func (t *Tenant) NamespaceResource() *corev1.Namespace {
+func (t *Tenant) NamespaceResource(name string) *corev1.Namespace {
 	return &corev1.Namespace{
 		ObjectMeta: metav1.ObjectMeta{
-			Name:            t.Namespace(),
+			Name:            name,
 			OwnerReferences: t.ownerReferences(),
 		},
 	}

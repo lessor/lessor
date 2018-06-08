@@ -28,20 +28,18 @@ func (c *Controller) resolveTenantState(key string) error {
 		return nil
 	}
 
-	_, err = c.namespacesLister.Get(tenant.Namespace())
-	switch {
-	case apierrors.IsNotFound(err):
-		if _, err := c.kubeClient.CoreV1().Namespaces().Create(tenant.NamespaceResource()); err != nil {
-			return errors.Wrapf(err, "error creating namespace for tenant %s", tenant.Name)
+	for _, namespace := range tenant.Namespaces() {
+		_, err = c.namespacesLister.Get(namespace)
+		switch {
+		case apierrors.IsNotFound(err):
+			if _, err := c.kubeClient.CoreV1().Namespaces().Create(tenant.NamespaceResource(namespace)); err != nil {
+				return errors.Wrapf(err, "error creating namespace %s for tenant %s", namespace, tenant.Name)
+			}
+		case err != nil:
+			errors.Wrapf(err, "error getting namespace %s for tenant %s", namespace, tenant.Name)
+		default:
+			// the namespace already exists
 		}
-	case err != nil:
-		errors.Wrapf(err, "error getting namespace for tenant %s", tenant.Name)
-	default:
-		// the namespace already exists
-	}
-
-	if err := c.rehydrateSecrets(c.templateNamespace, tenant.Name); err != nil {
-		return errors.Wrap(err, "error creating secrets for tenant")
 	}
 
 	c.recorder.Event(tenant, corev1.EventTypeNormal, SuccessSynced, MessageResourceSynced)
