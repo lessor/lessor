@@ -4,7 +4,7 @@
   <img src="./docs/images/gophers/boxes.png" width="400">
 </p>
 
-Lessor is a Kubernetes Operator for deploying, managing, and securing multi-tenant workloads on [Kubernetes](https://kubernetes.io/).
+Lessor is a [Kubernetes Operator](https://coreos.com/blog/introducing-operators.html) for deploying, managing, and securing multi-tenant workloads.
 
 - [Introduction](#introduction)
 - [How Does It Work?](#how-does-it-work)
@@ -22,7 +22,7 @@ In addition, here are some other documents that may be helpful:
 >
 > a person or company that leases a good or service to an entity according to an agreement
 
-Lessor is a [Kubernetes Operator](https://coreos.com/blog/introducing-operators.html) which aims to help manage multi-tenant workloads on Kubernetes. This project is new and under active development. If you're looking to contribute to this project, check out the [GitHub Issues](https://github.com/lessor/lessor/issues) and join the [#wg-multitenancy](https://kubernetes.slack.com/messages/C8E6YA9S7/) channel on the Kubernetes Slack. You can get an invite to Kubernetes Slack [here](http://slack.k8s.io/).
+Lessor is a [Kubernetes Operator](https://coreos.com/blog/introducing-operators.html) which aims to help manage the lifecycle of multi-tenant workloads. This project is new and under active development. If you're looking to contribute to this project, check out the [GitHub Issues](https://github.com/lessor/lessor/issues) and join the [#wg-multitenancy](https://kubernetes.slack.com/messages/C8E6YA9S7/) channel on the Kubernetes Slack. You can get an invite to Kubernetes Slack [here](http://slack.k8s.io/).
 
 ## How Does It Work?
 

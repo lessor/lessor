@@ -15,7 +15,7 @@ func init() {
 func main() {
 	app := cli.NewApp()
 	app.Name = "lessor"
-	app.Usage = "Deploy, manage, and secure single-tenant applications on Kubernetes"
+	app.Usage = "A Kubernetes Operator for managing multi-tenant workloads"
 	app.Version = "0.0.0"
 
 	app.Commands = []cli.Command{
