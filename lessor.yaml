@@ -1,4 +1,23 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lessor-system
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: tenants.lessor.io
+spec:
+  group: lessor.io
+  names:
+    kind: Tenant
+    listKind: TenantList
+    plural: tenants
+    singular: tenant
+  scope: Namespaced
+  version: v1
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,22 +44,3 @@ spec:
         - --debug
         image: gcr.io/lessor-io/lessor:latest
         imagePullPolicy: Always
----
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: tenants.lessor.io
-spec:
-  group: lessor.io
-  names:
-    kind: Tenant
-    listKind: TenantList
-    plural: tenants
-    singular: tenant
-  scope: Namespaced
-  version: v1
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: lessor-system

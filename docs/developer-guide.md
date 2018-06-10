@@ -99,8 +99,8 @@ To run the Lessor controller locally against the Kubernetes API server that is y
 
 ```bash
 # create the CRD, namespaces, etc
-kubectl apply -f ./tools/manifest/crd.yaml
-kubectl apply -f ./tools/manifest/namespaces.yaml
+kubectl apply -f ./tools/manifest/01-namespaces.yaml
+kubectl apply -f ./tools/manifest/02-crd.yaml
 
 # run the controller locally
 lessor run controller --local --debug
