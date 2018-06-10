@@ -4,7 +4,7 @@ See the [Developer Guide](../docs/developer-guide.md) for more information on co
 
 ## Finding Your Way
 
-- [`apis/lessor.io`](./apis/lessor.io) contains the CRD
+- [`apis/lessor.io`](./apis/lessor.io) contains the Custom Resource
 - [`client`](./client) contains a generated Kubernetes API client
 - [`command`](./command) contains all of the CLI commands
 - [`controller`](./controller) contains the Kubernetes controller
