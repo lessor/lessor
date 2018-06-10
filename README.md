@@ -28,7 +28,7 @@ Lessor is a [Kubernetes Operator](https://coreos.com/blog/introducing-operators.
 
 ### `Tenant` Custom Resource
 
-Each complete application instance in your environment is represented by the "Tenant" Kubernetes custom resource. See an [example CRD](./examples/tenant.yaml) for a more complete example of the configurable attributes of a tenant.
+Each complete application instance in your environment is represented by the `Tenant` Kubernetes custom resource. See an [example Custom Resource](./examples/tenant.yaml) for a more complete example of the configurable attributes of a tenant.
 
 The following is a minimal example:
 
@@ -39,7 +39,6 @@ metadata:
   name: acme-labs
   labels:
     name: acme-labs
-
 spec:
   namespaces:
   - acme-labs
@@ -49,4 +48,4 @@ spec:
 
 ### Controller
 
-Lessor uses the [Operator](https://coreos.com/blog/introducing-operators.html) pattern to encode domain-specific operational knowledge into software. The Operator pattern describes using a Kubernetes [Custom Resorce Definition](https://kubernetes.io/docs/concepts/api-extension/custom-resources/) and a [Controller](https://github.com/kubernetes/community/blob/master/contributors/devel/controllers.md) to provide a declarative configuration interface to a self-healing system.
+Lessor uses the [Operator](https://coreos.com/blog/introducing-operators.html) pattern to encode domain-specific operational knowledge into software. The Operator pattern describes using a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/api-extension/custom-resources/) and a [Controller](https://github.com/kubernetes/community/blob/master/contributors/devel/controllers.md) to provide a declarative configuration interface to a self-healing system.

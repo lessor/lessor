@@ -4,7 +4,6 @@ metadata:
   name: acme-labs
   labels:
     name: acme-labs
-
 spec:
   namespaces:
   - acme-labs
