@@ -45,7 +45,7 @@ If you've added new code that requires on a new dependency, you must run the fol
 dep ensure
 ```
 
-If you'd like to update all dependencies, run `dep ensure -update`. If you'd like to just update one dependency, you're out of luck because Dep doesn't support that.
+If you'd like to update all dependencies, run `dep ensure -update`. If you'd like to just update one dependency, run `dep ensure -update github.com/foo/bar`.
 
 ### Building The Code
 
