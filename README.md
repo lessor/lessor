@@ -1,7 +1,7 @@
 # Lessor [![CircleCI](https://circleci.com/gh/lessor/lessor/tree/master.svg?style=svg&circle-token=6df998c0f2085edbc4bfeaf38e5114f990204c36)](https://circleci.com/gh/lessor/lessor/tree/master)
 
 <p align="center">
-  <img src="./docs/images/gophers/boxes.png" width="400">
+  <img src="./docs/images/gophers/gophers_working.png" width="400">
 </p>
 
 Lessor is a [Kubernetes Operator](https://coreos.com/blog/introducing-operators.html) for deploying, managing, and securing multi-tenant workloads.
@@ -22,13 +22,15 @@ In addition, here are some other documents that may be helpful:
 >
 > a person or company that leases a good or service to an entity according to an agreement
 
-Lessor is a [Kubernetes Operator](https://coreos.com/blog/introducing-operators.html) which aims to help manage the lifecycle of multi-tenant workloads. This project is new and under active development. If you're looking to contribute to this project, check out the [GitHub Issues](https://github.com/lessor/lessor/issues) and join the [#wg-multitenancy](https://kubernetes.slack.com/messages/C8E6YA9S7/) channel on the Kubernetes Slack. You can get an invite to Kubernetes Slack [here](http://slack.k8s.io/).
+Lessor is a [Kubernetes Operator](https://coreos.com/blog/introducing-operators.html) which aims to help manage the lifecycle of multi-tenant workloads. This repo currently contains a very high-level `Tenant` Custom Resource as well as some Controller functionality. This codebase is mostly being used to experiment with various approaches to multi-tenancy on Kubernetes.
+
+If you're looking to contribute to this project, check out the [GitHub Issues](https://github.com/lessor/lessor/issues) and join the [#wg-multitenancy](https://kubernetes.slack.com/messages/C8E6YA9S7/) channel on the Kubernetes Slack. You can get an invite to Kubernetes Slack [here](http://slack.k8s.io/).
 
 ## How Does It Work?
 
 ### `Tenant` Custom Resource
 
-Each complete application instance in your environment is represented by the `Tenant` Kubernetes custom resource. See an [example Custom Resource](./examples/tenant.yaml) for a more complete example of the configurable attributes of a tenant.
+Each complete tenant in your environment is represented by the `Tenant` Kubernetes custom resource. See an [example Custom Resource](./examples/tenant.yaml) for a more complete example of the configurable attributes of a tenant.
 
 The following is a minimal example:
 
