@@ -46,7 +46,7 @@ func (c *FakeTenants) List(opts v1.ListOptions) (result *lessor_io_v1.TenantList
 	if label == nil {
 		label = labels.Everything()
 	}
-	list := &lessor_io_v1.TenantList{}
+	list := &lessor_io_v1.TenantList{ListMeta: obj.(*lessor_io_v1.TenantList).ListMeta}
 	for _, item := range obj.(*lessor_io_v1.TenantList).Items {
 		if label.Matches(labels.Set(item.Labels)) {
 			list.Items = append(list.Items, item)
