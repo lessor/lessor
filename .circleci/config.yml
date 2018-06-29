@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-        - image: golang:1.10.2
+      - image: golang:1.10.3
     working_directory: /go/src/github.com/lessor/lessor
     steps: &steps
       - checkout
