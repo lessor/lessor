@@ -2,32 +2,25 @@ required = ["k8s.io/code-generator/cmd/client-gen"]
 
 [[override]]
   name = "k8s.io/apimachinery"
-  branch = "release-1.10"
+  branch = "release-1.11"
 
 [[override]]
   name = "k8s.io/apiserver"
-  branch = "release-1.10"
+  branch = "release-1.11"
 
 [[override]]
   name = "k8s.io/client-go"
-  branch = "release-7.0"
+  version = "v8.0.0"
 
 [[override]]
   name = "k8s.io/code-generator"
-  branch = "release-1.10"
+  branch = "release-1.11"
 
-# golang/dep does not follow k8s.io/code-generator's Godeps.json and gengo's master
-# version does not work with release-1.8 k8s.io/code-generator. So we have to
-# override it.
+# vendor/k8s.io/apimachinery/pkg/runtime/serializer/json/json.go:104:16:
+# unknown field 'CaseSensitive' in struct literal of type jsoniter.Config
 [[override]]
-  name = "k8s.io/gengo"
-  revision = "01a732e01d00cb9a81bb0ca050d3e6d2b947927b"
-
-# To use reference package:
-#   vendor/k8s.io/kubernetes/pkg/util/parsers/parsers.go:36:16: undefined: reference.ParseNormalizedNamed
-[[override]]
-  name = "github.com/docker/distribution"
-  branch = "master"
+  name = "github.com/json-iterator/go"
+  revision = "f2b4162afba35581b6d4a50d3b8f34e33c144682"
 
 [[constraint]]
   name = "github.com/gobuffalo/plush"
