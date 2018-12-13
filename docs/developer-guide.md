@@ -27,16 +27,10 @@ git clone git@github.com:lessor/lessor.git $GOPATH/src/github.com/lessor/lessor
 
 Lessor uses [Dep](https://github.com/golang/dep) to manage Go dependencies.
 
-To install the latest build of `dep`, run the following:
+To install the latest build of `dep` and download the project dependences, run:
 
 ```
-go get -u github.com/golang/dep/cmd/dep
-```
-
-To download the project dependences, run:
-
-```
-dep ensure -vendor-only
+make deps
 ```
 
 If you've added new code that requires on a new dependency, you must run the following for your dependency to be added:
@@ -52,10 +46,10 @@ If you'd like to update all dependencies, run `dep ensure -update`. If you'd lik
 Use `go build` to build the code:
 
 ```
-go build
+go build .
 ```
 
-This will produce a `lessor` binary in the root of the repository.
+You can also run `make` from the root of the repository to build the code. This will produce a `lessor` binary in the root of the repository.
 
 ```
 ./lessor --help
@@ -75,10 +69,10 @@ cp ./lessor /usr/local/bin/
 
 ## Test
 
-Use `go test` to run tests:
+To run tests, use the following command:
 
 ```
-go test -cover -race -v ./...
+make test
 ```
 
 ### Running a CI Build Locally
@@ -139,11 +133,7 @@ docker run -it gcr.io/lessor-io/lessor lessor --help
 To generate the [clientset](https://github.com/kubernetes/community/blob/master/contributors/devel/generating-clientset.md) for the Lessor API types, run the following:
 
 ```
-./vendor/k8s.io/code-generator/generate-groups.sh all \
-  github.com/lessor/lessor/pkg/client \
-  github.com/lessor/lessor/pkg/apis \
-  lessor.io:v1 \
-  --go-header-file /dev/null
+make generate
 ```
 
 ### Import Organization

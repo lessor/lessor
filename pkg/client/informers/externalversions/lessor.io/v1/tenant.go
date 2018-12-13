@@ -5,11 +5,11 @@ package v1
 import (
 	time "time"
 
-	lessor_io_v1 "github.com/lessor/lessor/pkg/apis/lessor.io/v1"
+	lessoriov1 "github.com/lessor/lessor/pkg/apis/lessor.io/v1"
 	versioned "github.com/lessor/lessor/pkg/client/clientset/versioned"
 	internalinterfaces "github.com/lessor/lessor/pkg/client/informers/externalversions/internalinterfaces"
 	v1 "github.com/lessor/lessor/pkg/client/listers/lessor.io/v1"
-	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
@@ -41,20 +41,20 @@ func NewTenantInformer(client versioned.Interface, namespace string, resyncPerio
 func NewFilteredTenantInformer(client versioned.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
 	return cache.NewSharedIndexInformer(
 		&cache.ListWatch{
-			ListFunc: func(options meta_v1.ListOptions) (runtime.Object, error) {
+			ListFunc: func(options metav1.ListOptions) (runtime.Object, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
 				return client.LessorV1().Tenants(namespace).List(options)
 			},
-			WatchFunc: func(options meta_v1.ListOptions) (watch.Interface, error) {
+			WatchFunc: func(options metav1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
 				return client.LessorV1().Tenants(namespace).Watch(options)
 			},
 		},
-		&lessor_io_v1.Tenant{},
+		&lessoriov1.Tenant{},
 		resyncPeriod,
 		indexers,
 	)
@@ -65,7 +65,7 @@ func (f *tenantInformer) defaultInformer(client versioned.Interface, resyncPerio
 }
 
 func (f *tenantInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&lessor_io_v1.Tenant{}, f.defaultInformer)
+	return f.factory.InformerFor(&lessoriov1.Tenant{}, f.defaultInformer)
 }
 
 func (f *tenantInformer) Lister() v1.TenantLister {
