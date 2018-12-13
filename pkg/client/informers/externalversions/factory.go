@@ -9,7 +9,7 @@ import (
 
 	versioned "github.com/lessor/lessor/pkg/client/clientset/versioned"
 	internalinterfaces "github.com/lessor/lessor/pkg/client/informers/externalversions/internalinterfaces"
-	lessor_io "github.com/lessor/lessor/pkg/client/informers/externalversions/lessor.io"
+	lessorio "github.com/lessor/lessor/pkg/client/informers/externalversions/lessor.io"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -156,9 +156,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Lessor() lessor_io.Interface
+	Lessor() lessorio.Interface
 }
 
-func (f *sharedInformerFactory) Lessor() lessor_io.Interface {
-	return lessor_io.New(f, f.namespace, f.tweakListOptions)
+func (f *sharedInformerFactory) Lessor() lessorio.Interface {
+	return lessorio.New(f, f.namespace, f.tweakListOptions)
 }
