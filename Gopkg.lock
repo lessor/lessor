@@ -266,17 +266,6 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:af395498c557bb6c1020758fc419e282a6b5c17b7125f4822658c69564a72f75"
-  name = "github.com/kolide/kit"
-  packages = [
-    "env",
-    "logutil",
-  ]
-  pruneopts = ""
-  revision = "bd1a9de64d4895c04a20084736aab1cd1fdbe8ab"
-
-[[projects]]
-  branch = "master"
   digest = "1:1ed9eeebdf24aadfbca57eb50e6455bd1d2474525e0f0d4454de8c8e9bc7ee9a"
   name = "github.com/kr/logfmt"
   packages = ["."]
@@ -438,14 +427,6 @@
   pruneopts = ""
   revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
   version = "v1.2.2"
-
-[[projects]]
-  digest = "1:e85837cb04b78f61688c6eba93ea9d14f60d611e2aaf8319999b1a60d2dafbfa"
-  name = "github.com/urfave/cli"
-  packages = ["."]
-  pruneopts = ""
-  revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
-  version = "v1.20.0"
 
 [[projects]]
   branch = "master"
@@ -895,11 +876,8 @@
     "github.com/go-kit/kit/log",
     "github.com/go-kit/kit/log/level",
     "github.com/gobuffalo/plush",
-    "github.com/kolide/kit/env",
-    "github.com/kolide/kit/logutil",
     "github.com/pkg/errors",
     "github.com/stretchr/testify/require",
-    "github.com/urfave/cli",
     "k8s.io/api/core/v1",
     "k8s.io/apimachinery/pkg/api/errors",
     "k8s.io/apimachinery/pkg/apis/meta/v1",

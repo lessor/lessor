@@ -51,3 +51,5 @@ spec:
 ### Controller
 
 Lessor uses the [Operator](https://coreos.com/blog/introducing-operators.html) pattern to encode domain-specific operational knowledge into software. The Operator pattern describes using a Kubernetes [Custom Resource Definition](https://kubernetes.io/docs/concepts/api-extension/custom-resources/) and a [Controller](https://github.com/kubernetes/community/blob/master/contributors/devel/controllers.md) to provide a declarative configuration interface to a self-healing system.
+
+See the [Developer Guide](./docs/developer-guide.md) for information on building the controller and see the [Getting Started Guide](./docs/getting-started.md) for information on binary distributions.

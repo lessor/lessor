@@ -1,18 +1,18 @@
-FROM golang:1.10.3-alpine3.7 as builder
+FROM golang:1.11.3-alpine3.8 as builder
 
-RUN apk add --update ca-certificates git tar
+RUN apk add --update ca-certificates git tar make
 
 WORKDIR /go/src/github.com/lessor/lessor
 COPY . .
 
-RUN go get -u github.com/golang/dep/cmd/dep
-RUN dep ensure -vendor-only
-RUN go build -o /usr/bin/lessor
+RUN make deps-dep
+RUN make build
+RUN cp ./lessor-controller /usr/bin/lessor-controller
 
-FROM alpine:3.7
+FROM alpine:3.8
 
 RUN apk --update add ca-certificates
 
-COPY --from=builder /usr/bin/lessor /usr/bin/lessor
+COPY --from=builder /usr/bin/lessor-controller /usr/bin/lessor-controller
 
-CMD ["lessor"]
+CMD ["lessor-controller"]
