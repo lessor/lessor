@@ -26,7 +26,7 @@ lint:
 	--enable=misspell \
 	--skip=client \
 	--skip=apis \
-	./pkg/...
+	./pkg/... ./cmd/...
 
 generate: clientset manifest
 
