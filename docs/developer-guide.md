@@ -43,28 +43,22 @@ If you'd like to update all dependencies, run `dep ensure -update`. If you'd lik
 
 ### Building The Code
 
-Use `go build` to build the code:
+Use `make` to build the code:
 
 ```
-go build .
+make
 ```
 
-You can also run `make` from the root of the repository to build the code. This will produce a `lessor` binary in the root of the repository.
+This will produce a `lessor-controller` binary in the root of the repository.
 
 ```
-./lessor --help
-```
-
-You can use the Go toolchain to install the binary to `$GOPATH/bin/lessor`:
-
-```
-go install
+./lessor-controller --help
 ```
 
 This is a static binary, so feel free to use `cp` to install it to your desired location:
 
 ```
-cp ./lessor /usr/local/bin/
+cp ./lessor-controller /usr/local/bin/
 ```
 
 ## Test
@@ -97,7 +91,7 @@ kubectl apply -f ./tools/manifest/01-namespaces.yaml
 kubectl apply -f ./tools/manifest/02-crd.yaml
 
 # run the controller locally
-lessor run controller --local --debug
+lessor-controller --local --debug
 ```
 
 ### Downloading and Running Containers
@@ -123,7 +117,7 @@ Development branches (and their containers) are usually deleted as soon as possi
 You can use the `docker` CLI to run the container:
 
 ```
-docker run -it gcr.io/lessor-io/lessor lessor --help
+docker run -it gcr.io/lessor-io/lessor lessor-controller --help
 ```
 
 ## Develop
@@ -133,7 +127,7 @@ docker run -it gcr.io/lessor-io/lessor lessor --help
 To generate the [clientset](https://github.com/kubernetes/community/blob/master/contributors/devel/generating-clientset.md) for the Lessor API types, run the following:
 
 ```
-make generate
+make clientset
 ```
 
 ### Import Organization
@@ -166,5 +160,5 @@ import (
 The `lessor.yaml` bundle in the root of the repository is an amalgamation of the files in `tools/manifest`. To combine these files together, run the following from the root of the repository:
 
 ```
-cat tools/manifest/*.yaml > lessor.yaml
+make manifest
 ```

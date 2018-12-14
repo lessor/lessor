@@ -38,9 +38,7 @@ spec:
       containers:
       - name: lessor-controller
         command:
-        - lessor
-        - run
-        - controller
+        - lessor-controller
         - --debug
         image: gcr.io/lessor-io/lessor:latest
         imagePullPolicy: Always
